@@ -84,4 +84,10 @@ test('Only the six audited write flows changed; all other original flows are ide
  for(const [id,f] of Object.entries(before.logic.flows))if(!flows.includes(id))assert.deepEqual(app.logic.flows[id],f,id);
  assert.deepEqual(app.logic.events,before.logic.events);
 });
+
+test('Unused history requests are absent from form mounting and focus',()=>{
+ const removed=[["page.Page1","listasStein"],["page.Page2","despesasstein"],["page.Page7","viagensstein"],["page.Page10","despesasstein"],["page.Page11","despesasstein"]];
+ for(const [p,res] of removed){const s=app.screens[p];assert(!s.dataResources.some(x=>x.resource_name===res));if(originalRoot){const old=read(originalRoot).config.screens[p].dataResources.find(x=>x.resource_name===res);for(const es of Object.values(s.events))for(const e of es)assert.notEqual(app.logic.events[e.id]?.contextId,old.data_canvas_flow_id);}}
+});
+test('All four creation flows still fetch current identifiers before writing',()=>{for(const fid of [flows[0],flows[2],flows[4],flows[5]]){const r=run(fid,{pageVars:fid===flows[0]?expenseVars:{data:'2026-10-09'}});assert(r.trace.indexOf('Get record collection')>=0);assert(r.trace.indexOf('Get record collection')<r.trace.indexOf('HTTP request'));}});
 console.log(`\n${checks} checks passed. No live writes were made.`);

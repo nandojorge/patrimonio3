@@ -57,22 +57,12 @@
           "resource_name": "entradasstein",
           "reference_name": "entradasstein1",
           "data_canvas_flow_id": "data:entradasstein1findAll0ae2703.fb4e209"
-        },
-        {
-          "query": {},
-          "action_name": "data.findAll",
-          "resource_name": "listasStein",
-          "reference_name": "listasStein1",
-          "data_canvas_flow_id": "data:listasStein1findAllaf53926.10cf2e6"
         }
       ],
       "events": {
         "onPageDidFocus": [
           {
             "id": "257353fb91c48.5c689a0fb35d4"
-          },
-          {
-            "id": "6839d09.629b0b9"
           },
           {
             "id": "fd2f8be.9582c15"
@@ -84,9 +74,6 @@
         "onPageDidMount": [
           {
             "id": "a679977d5c91a.7ec24a811c189"
-          },
-          {
-            "id": "789875a.b9dcceb"
           },
           {
             "id": "6c0dc38.f78bd05"
@@ -456,13 +443,6 @@
           "resource_name": "listasStein",
           "reference_name": "listasStein1",
           "data_canvas_flow_id": "data:listasStein1findAll0f57a30.c166455"
-        },
-        {
-          "query": {},
-          "action_name": "data.findAll",
-          "resource_name": "despesasstein",
-          "reference_name": "despesasstein1",
-          "data_canvas_flow_id": "data:despesasstein1findAll1305c86.8084ea1"
         }
       ],
       "events": {
@@ -472,9 +452,6 @@
           },
           {
             "id": "5f12f40.1b6cb26"
-          },
-          {
-            "id": "a5c6e46.abb194b"
           }
         ],
         "onPageDidMount": [
@@ -483,9 +460,6 @@
           },
           {
             "id": "3fb8d53.0ab24fa"
-          },
-          {
-            "id": "d530669.f9acab7"
           }
         ],
         "datadespesa:onChange": [
@@ -2774,13 +2748,6 @@
           "resource_name": "listasStein",
           "reference_name": "listasStein1",
           "data_canvas_flow_id": "data:listasStein1findAll92a0333.0d10e09"
-        },
-        {
-          "query": {},
-          "action_name": "data.findAll",
-          "resource_name": "viagensstein",
-          "reference_name": "viagensstein1",
-          "data_canvas_flow_id": "data:viagensstein1findAll7b0c6a9.0201790"
         }
       ],
       "events": {
@@ -2790,9 +2757,6 @@
           },
           {
             "id": "ef4c8a7.40e86e3"
-          },
-          {
-            "id": "32fe89b.7c30e9e"
           }
         ],
         "onPageDidFocus": [
@@ -2801,9 +2765,6 @@
           },
           {
             "id": "43d4988.fc77d26"
-          },
-          {
-            "id": "15194be.4d3db7c"
           }
         ],
         "data:onChange": [
@@ -3693,13 +3654,6 @@
         {
           "query": {},
           "action_name": "data.findAll",
-          "resource_name": "despesasstein",
-          "reference_name": "despesasstein1",
-          "data_canvas_flow_id": "data:despesasstein1findAll4687e08.8cacf23"
-        },
-        {
-          "query": {},
-          "action_name": "data.findAll",
           "resource_name": "listasStein",
           "reference_name": "listasStein1",
           "data_canvas_flow_id": "data:listasStein1findAll1d60273.358bab0"
@@ -3712,9 +3666,6 @@
           },
           {
             "id": "227504c.2beba64"
-          },
-          {
-            "id": "8595f7c.591911c"
           }
         ],
         "onPageDidFocus": [
@@ -3723,9 +3674,6 @@
           },
           {
             "id": "db82b0e.4a095ba"
-          },
-          {
-            "id": "7448bd1.e6b3d35"
           }
         ],
         "Datacontabilidade:onChange": [
@@ -4015,13 +3963,6 @@
         {
           "query": {},
           "action_name": "data.findAll",
-          "resource_name": "despesasstein",
-          "reference_name": "despesasstein1",
-          "data_canvas_flow_id": "data:despesasstein1findAll0beee7d.3d38b68"
-        },
-        {
-          "query": {},
-          "action_name": "data.findAll",
           "resource_name": "pagamentodinheirovivusstein",
           "reference_name": "pagamentodinheirovivusstein1",
           "data_canvas_flow_id": "data:pagamentodinheirovivusstein1findAllee974cd.5a6cc2b"
@@ -4033,18 +3974,12 @@
             "id": "7b56ab4.2a7dbde"
           },
           {
-            "id": "84b9f98.b21c16c"
-          },
-          {
             "id": "e7558db.e911d8b"
           }
         ],
         "onPageDidMount": [
           {
             "id": "ac8c4f4.bf021f8"
-          },
-          {
-            "id": "a36329a.622ffe3"
           },
           {
             "id": "ee5f588.0ffbc4f"
