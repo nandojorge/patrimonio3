@@ -16,7 +16,7 @@ function run(fid,options={}){
  for(let step=0;step<60&&current?.type==='node';step++){
   const n=f.nodes[current.id];assert(n,'Dangling node '+current.id);trace.push(n.title);let channel;
   if(n.title==='Set page variable'){const a=n.inputs.variable.key;pageVars[a.reference.key]=a.value.source==='expression'?evaluate(a.value.key.script,state):a.value.key;channel=channels.set;}
-  else if(n.title==='Get record collection'){results[current.id]={records:options.records||[{id_despesa:'20',id_viagens:'10'}]};channel=options.readFailure?channels.getError:channels.get;}
+  else if(n.title==='Get record collection'){results[current.id]={records:options.records||[{id_despesa:'20',id_viagens:'10'}]};channel=(options.readFailure||(options.directReadFailure&&current.id==='audit.readIDs'))?channels.getError:channels.get;}
   else if(n.title==='Set data variable'){const a=n.inputs.assignment.key;const [field,node]=a.data.key.split('@@@');state.data[a.reference.key]=results[node][field];channel=channels.data;}
   else if(n.title==='If condition'){channel=evaluate(n.inputs.condition.key.script,state)?channels.true:channels.false;}
   else if(n.title==='Confirm'){channel=(options.confirms?.[confirmIndex++]??true)?channels.yes:channels.no;}
@@ -79,9 +79,9 @@ test('Direct links without record IDs cannot update expenses, trips or reimburse
  assert.equal(evaluate(app.expressions['audit.expenseEditInvalid'].script,{pageVars:{valor:'12,50'},params:{iddespesa:'5'}}),false);
  assert.equal(evaluate(app.expressions['audit.tripEditInvalid'].script,{pageVars:{kmSaida:'100',kmChegada:''},params:{id:'5'}}),false);
 });
-test('Only the six audited write flows changed; all other original flows are identical',()=>{
+test('Only audited writes and main data loader changed; other original flows identical',()=>{
  if(!originalRoot)return;const before=read(originalRoot).config;
- for(const [id,f] of Object.entries(before.logic.flows))if(!flows.includes(id))assert.deepEqual(app.logic.flows[id],f,id);
+ for(const [id,f] of Object.entries(before.logic.flows))if(!flows.includes(id)&&id!=="48b0666.cf70ca2")assert.deepEqual(app.logic.flows[id],f,id);
  assert.deepEqual(app.logic.events,before.logic.events);
 });
 
@@ -90,4 +90,8 @@ test('Unused history requests are absent from form mounting and focus',()=>{
  for(const [p,res] of removed){const s=app.screens[p];assert(!s.dataResources.some(x=>x.resource_name===res));if(originalRoot){const old=read(originalRoot).config.screens[p].dataResources.find(x=>x.resource_name===res);for(const es of Object.values(s.events))for(const e of es)assert.notEqual(app.logic.events[e.id]?.contextId,old.data_canvas_flow_id);}}
 });
 test('All four creation flows still fetch current identifiers before writing',()=>{for(const fid of [flows[0],flows[2],flows[4],flows[5]]){const r=run(fid,{pageVars:fid===flows[0]?expenseVars:{data:'2026-10-09'}});assert(r.trace.indexOf('Get record collection')>=0);assert(r.trace.indexOf('Get record collection')<r.trace.indexOf('HTTP request'));}});
+
+test('Direct CSV preserves commas, quotes, newlines, zero and active flags',()=>{const script=app.dataResources.despesasdiretas.driverConfiguration.operations.list.responseMapper.key.script;const records=evaluate(script,{response:{status:200,data:'id_despesa,ativa,descricao,valor\r\n1,TRUE,"Teste, com ""aspas""\nsegunda linha",0\r\n2,FALSE,Outra,10\r\n'}}).records;assert.equal(records.length,1);assert.equal(records[0].descricao,'Teste, com "aspas"\nsegunda linha');assert.equal(records[0].valor,'0');assert.throws(()=>evaluate(script,{response:{status:200,data:'<html>Login</html>'}}));});
+test('Aggregate identifier parser validates Google errors and empty sheet',()=>{const script=app.dataResources.despesasidsdiretos.driverConfiguration.operations.list.responseMapper.key.script;const parse=v=>evaluate(script,{DECODE_JSON:JSON.parse,response:{status:200,data:'/*O_o*/\ngoogle.visualization.Query.setResponse('+JSON.stringify(v)+');'}});assert.equal(parse({status:'ok',table:{cols:[{type:'number'}],rows:[{c:[{v:50}]}]}}).records[0].id_despesa,50);assert.equal(parse({status:'ok',table:{cols:[{type:'number'}],rows:[{c:[{v:null}]}]}}).records.length,0);assert.throws(()=>parse({status:'error'}));});
+for(const fid of [flows[0],flows[4],flows[5]])test('Direct identifier failure uses Stein and preserves write '+fid,()=>{const r=run(fid,{pageVars:fid===flows[0]?expenseVars:{data:'2026-10-09'},directReadFailure:true});assert.equal(r.trace.filter(x=>x==='Get record collection').length,2);assert(r.requests.length>0);const ordinary=run(fid,{pageVars:fid===flows[0]?expenseVars:{data:'2026-10-09'}});assert.equal(JSON.stringify(r.requests),JSON.stringify(ordinary.requests));assert.equal(r.navigated,ordinary.navigated);});
 console.log(`\n${checks} checks passed. No live writes were made.`);

@@ -72481,7 +72481,7 @@
                 "key": {
                   "resourceName": {
                     "source": "resource",
-                    "key": "despesasids"
+                    "key": "despesasidsdiretos"
                   }
                 },
                 "source": "object"
@@ -72497,7 +72497,7 @@
               "08036d98-5276-477e-885d-bf5a093053e3": [
                 {
                   "type": "node",
-                  "id": "audit.error"
+                  "id": "performance.fallback"
                 }
               ]
             }
@@ -72515,6 +72515,70 @@
                   "data": {
                     "source": "node",
                     "key": "records@@@audit.readIDs"
+                  },
+                  "reference": {
+                    "source": "data-reference",
+                    "key": "despesasstein1"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "60c0a221-8687-465d-9249-53c98311db9b": [
+                {
+                  "type": "node",
+                  "id": "93581c1.a5cc9e"
+                }
+              ]
+            }
+          },
+          "performance.fallback": {
+            "type": "function",
+            "title": "Get record collection",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_100f5064.6f140"
+            },
+            "inputs": {
+              "request": {
+                "key": {
+                  "resourceName": {
+                    "source": "resource",
+                    "key": "despesasids"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "81ba0b09-224c-4016-8f13-839c8a3ef20a": [
+                {
+                  "type": "node",
+                  "id": "performance.fallbackSet"
+                }
+              ],
+              "08036d98-5276-477e-885d-bf5a093053e3": [
+                {
+                  "type": "node",
+                  "id": "audit.error"
+                }
+              ]
+            }
+          },
+          "performance.fallbackSet": {
+            "type": "function",
+            "title": "Set data variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_105ec0bb.2f7d7"
+            },
+            "inputs": {
+              "assignment": {
+                "key": {
+                  "data": {
+                    "source": "node",
+                    "key": "records@@@performance.fallback"
                   },
                   "reference": {
                     "source": "data-reference",
@@ -76618,7 +76682,7 @@
                 "key": {
                   "resourceName": {
                     "source": "resource",
-                    "key": "despesasids"
+                    "key": "despesasidsdiretos"
                   }
                 },
                 "source": "object"
@@ -76634,7 +76698,7 @@
               "08036d98-5276-477e-885d-bf5a093053e3": [
                 {
                   "type": "node",
-                  "id": "audit.error"
+                  "id": "performance.fallback"
                 }
               ]
             }
@@ -76696,6 +76760,70 @@
                 {
                   "type": "output",
                   "id": "80c0e322.fee95-success-output"
+                }
+              ]
+            }
+          },
+          "performance.fallback": {
+            "type": "function",
+            "title": "Get record collection",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_100f5064.6f140"
+            },
+            "inputs": {
+              "request": {
+                "key": {
+                  "resourceName": {
+                    "source": "resource",
+                    "key": "despesasids"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "81ba0b09-224c-4016-8f13-839c8a3ef20a": [
+                {
+                  "type": "node",
+                  "id": "performance.fallbackSet"
+                }
+              ],
+              "08036d98-5276-477e-885d-bf5a093053e3": [
+                {
+                  "type": "node",
+                  "id": "audit.error"
+                }
+              ]
+            }
+          },
+          "performance.fallbackSet": {
+            "type": "function",
+            "title": "Set data variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_105ec0bb.2f7d7"
+            },
+            "inputs": {
+              "assignment": {
+                "key": {
+                  "data": {
+                    "source": "node",
+                    "key": "records@@@performance.fallback"
+                  },
+                  "reference": {
+                    "source": "data-reference",
+                    "key": "despesasstein1"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "60c0a221-8687-465d-9249-53c98311db9b": [
+                {
+                  "type": "node",
+                  "id": "636344a1.947d8c"
                 }
               ]
             }
@@ -113957,7 +114085,7 @@
                 "key": {
                   "resourceName": {
                     "source": "resource",
-                    "key": "despesasids"
+                    "key": "despesasidsdiretos"
                   }
                 },
                 "source": "object"
@@ -113973,7 +114101,7 @@
               "08036d98-5276-477e-885d-bf5a093053e3": [
                 {
                   "type": "node",
-                  "id": "audit.error"
+                  "id": "performance.fallback"
                 }
               ]
             }
@@ -113991,6 +114119,70 @@
                   "data": {
                     "source": "node",
                     "key": "records@@@audit.readIDs"
+                  },
+                  "reference": {
+                    "source": "data-reference",
+                    "key": "despesasstein1"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "60c0a221-8687-465d-9249-53c98311db9b": [
+                {
+                  "type": "node",
+                  "id": "41e789d6.06ae28"
+                }
+              ]
+            }
+          },
+          "performance.fallback": {
+            "type": "function",
+            "title": "Get record collection",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_100f5064.6f140"
+            },
+            "inputs": {
+              "request": {
+                "key": {
+                  "resourceName": {
+                    "source": "resource",
+                    "key": "despesasids"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "81ba0b09-224c-4016-8f13-839c8a3ef20a": [
+                {
+                  "type": "node",
+                  "id": "performance.fallbackSet"
+                }
+              ],
+              "08036d98-5276-477e-885d-bf5a093053e3": [
+                {
+                  "type": "node",
+                  "id": "audit.error"
+                }
+              ]
+            }
+          },
+          "performance.fallbackSet": {
+            "type": "function",
+            "title": "Set data variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_105ec0bb.2f7d7"
+            },
+            "inputs": {
+              "assignment": {
+                "key": {
+                  "data": {
+                    "source": "node",
+                    "key": "records@@@performance.fallback"
                   },
                   "reference": {
                     "source": "data-reference",
@@ -123518,7 +123710,7 @@
                 "key": {
                   "resourceName": {
                     "source": "resource",
-                    "key": "despesasstein"
+                    "key": "despesasdiretas"
                   }
                 },
                 "source": "object"
@@ -123532,6 +123724,85 @@
                 }
               ],
               "08036d98-5276-477e-885d-bf5a093053e3": [
+                {
+                  "type": "node",
+                  "id": "performance.fallback"
+                }
+              ]
+            }
+          },
+          "performance.fallback": {
+            "type": "function",
+            "title": "Get record collection",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_100f5064.6f140"
+            },
+            "inputs": {
+              "request": {
+                "key": {
+                  "resourceName": {
+                    "source": "resource",
+                    "key": "despesasstein"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "81ba0b09-224c-4016-8f13-839c8a3ef20a": [
+                {
+                  "type": "node",
+                  "id": "performance.fallbackSet"
+                }
+              ],
+              "08036d98-5276-477e-885d-bf5a093053e3": [
+                {
+                  "type": "output",
+                  "id": "48b0666.cf70ca2-success-output"
+                }
+              ]
+            }
+          },
+          "performance.fallbackSet": {
+            "type": "function",
+            "title": "Set data variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_105ec0bb.2f7d7"
+            },
+            "inputs": {
+              "assignment": {
+                "key": {
+                  "data": {
+                    "source": "expression",
+                    "key": {
+                      "script": "SORT_BY_KEY(SORT_BY_KEY(LOOKUP(LOOKUP(outputs,\"performance.fallback\"),\"records\"),\"id_despesa\",\"desc\"),\"data\",\"desc\")",
+                      "formula": " SORT_BY_KEY(    SORT_BY_KEY(      outputs[\"performance.fallback\"].records,       \"id_despesa\", \"desc\"    ),     \"data\", \"desc\"  )",
+                      "inverse": "SORT_BY_KEY.inv(SORT_BY_KEY.inv(LOOKUP.inv(LOOKUP.inv([\"r\",outputs,\"outputs\"],[\"c\",\"performance.fallback\"]),[\"c\",\"records\"]),[\"c\",\"id_despesa\"],[\"c\",\"desc\"]),[\"c\",\"data\"],[\"c\",\"desc\"])",
+                      "functions": [
+                        "SORT_BY_KEY",
+                        "LOOKUP"
+                      ],
+                      "dependencies": [
+                        [
+                          "outputs",
+                          "performance.fallback",
+                          "records"
+                        ]
+                      ]
+                    }
+                  },
+                  "reference": {
+                    "source": "data-reference",
+                    "key": "despesasstein1"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "60c0a221-8687-465d-9249-53c98311db9b": [
                 {
                   "type": "output",
                   "id": "48b0666.cf70ca2-success-output"
@@ -126196,6 +126467,721 @@
                 "inverse": "[\"o\",{records:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
                 "functions": [
                   "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "create": {
+            "enabled": false,
+            "requestMethod": "POST",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "delete": {
+            "enabled": false,
+            "requestMethod": "DELETE",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "update": {
+            "enabled": false,
+            "requestMethod": "PATCH",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "replace": {
+            "enabled": false,
+            "requestMethod": "PUT",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "retrieve": {
+            "enabled": false,
+            "requestMethod": "GET",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          }
+        }
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "cb": {
+            "type": "string",
+            "examples": [
+              ""
+            ]
+          },
+          "data": {
+            "type": "string",
+            "format": "date",
+            "examples": [
+              "2025-09-16"
+            ]
+          },
+          "pago": {
+            "type": "string",
+            "examples": [
+              ""
+            ]
+          },
+          "ativa": {
+            "type": "string",
+            "examples": [
+              "TRUE"
+            ]
+          },
+          "conta": {
+            "type": "string",
+            "examples": [
+              "Vivus",
+              "Ana"
+            ]
+          },
+          "valor": {
+            "type": "string",
+            "examples": [
+              "11.5",
+              "13.96",
+              "70",
+              "5.52",
+              "224.4"
+            ]
+          },
+          "imagem": {
+            "type": "string",
+            "format": "web-url",
+            "examples": [
+              "https://drive.google.com/open?id=1BcKAN1ja6U1EhayzhgN84eANxuSpe55S",
+              "https://drive.google.com/open?id=1wl2PUGNzGDQmoPqxrUmDAn4keKlrf30O"
+            ]
+          },
+          "categoria": {
+            "type": "string",
+            "examples": [
+              "Finanças",
+              "Desporto",
+              "Sessão Indv.",
+              "Outros",
+              "Salário"
+            ]
+          },
+          "descricao": {
+            "type": "string",
+            "examples": [
+              "retenção psicoterapia ",
+              "corrida Barcelos ",
+              "7346 | Inês Ferreira",
+              "comissão edenred ",
+              "CTR "
+            ]
+          },
+          "movimento": {
+            "type": "string",
+            "examples": [
+              "Saída",
+              "Entrada"
+            ]
+          },
+          "data_stein": {
+            "type": "string",
+            "format": "date",
+            "examples": [
+              "2025-09-16"
+            ]
+          },
+          "id_despesa": {
+            "type": "string",
+            "format": "integer",
+            "examples": [
+              "5520",
+              "5521",
+              "5522",
+              "5523",
+              "5524"
+            ]
+          },
+          "percentagem": {
+            "type": "string",
+            "examples": [
+              "0",
+              ""
+            ]
+          },
+          "classificacao": {
+            "type": "string",
+            "format": "integer",
+            "examples": [
+              "3",
+              "0",
+              "16",
+              "4"
+            ]
+          },
+          "iconcategoria": {
+            "type": "string",
+            "format": "web-url",
+            "examples": [
+              "https://cdn-icons-png.flaticon.com/128/1604/1604644.png",
+              "https://cdn-icons-png.flaticon.com/128/4893/4893592.png",
+              "FALSE",
+              "https://cdn-icons-png.flaticon.com/128/3388/3388759.png",
+              "https://cdn-icons-png.flaticon.com/128/12503/12503076.png"
+            ]
+          },
+          "valor_a_repor": {
+            "type": "string",
+            "examples": [
+              ""
+            ]
+          },
+          "vivus_pessoal": {
+            "type": "string",
+            "examples": [
+              "Vivusfisio",
+              "Pessoal"
+            ]
+          },
+          "despesas_fixas": {
+            "type": "string",
+            "examples": [
+              "Não",
+              "Sim"
+            ]
+          },
+          "fisioterapeuta": {
+            "type": "string",
+            "examples": [
+              "",
+              "Sonia Oliveira"
+            ]
+          },
+          "reposicao_valor": {
+            "type": "string",
+            "examples": [
+              "FALSE"
+            ]
+          },
+          "codigo_balancete": {
+            "type": "string",
+            "examples": [
+              ""
+            ]
+          },
+          "data_contabilidade": {
+            "type": "string",
+            "examples": [
+              "2025-09-16",
+              ""
+            ]
+          },
+          "data_contabilidade_stein": {
+            "type": "string",
+            "examples": [
+              "2025-09-16",
+              ""
+            ]
+          }
+        }
+      },
+      "identifiers": [
+        "id"
+      ]
+    },
+    "despesasdiretas": {
+      "id": "despesasdiretas",
+      "type": "restd",
+      "driverConfiguration": {
+        "base": {
+          "baseURL": {
+            "key": "https://docs.google.com/spreadsheets/d/18zBgIUcwIjTc1fOzsmh46CrBnX_usNrCSAHtGEc9RJQ/export?format=csv&gid=1862163396",
+            "source": "str"
+          },
+          "driverVersion": "1.0.0"
+        },
+        "type": "restd",
+        "headers": {
+          "key": [],
+          "source": "array"
+        },
+        "operations": {
+          "list": {
+            "enabled": true,
+            "relativePath": {
+              "key": "",
+              "source": "str"
+            },
+            "requestMethod": "GET",
+            "responseMapper": {
+              "key": {
+                "script": "(()=>{const records=(function csv(text){const rows=[];let row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='\"'){if(quoted&&text[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(!quoted&&(c===','||c==='\\n'||c==='\\r')){row.push(cell);cell='';if(c!==','){if(c==='\\r'&&text[i+1]==='\\n')i++;rows.push(row);row=[];}}else cell+=c;}if(quoted)throw Error('Invalid CSV');if(cell||row.length){row.push(cell);rows.push(row);}const headers=rows.shift();if(!headers||!headers.includes('id_despesa')||!headers.includes('ativa'))throw Error('Invalid sheet');return rows.filter(x=>x.length===headers.length).map(x=>headers.reduce((o,h,i)=>{o[h]=x[i];return o;},{})).filter(x=>x.ativa==='TRUE');})(LOOKUP(response,\"data\"));return {records,driverCode:LOOKUP(response,\"status\")};})()",
+                "formula": "(()=>{const records=(function csv(text){const rows=[];let row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='\"'){if(quoted&&text[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(!quoted&&(c===','||c==='\\n'||c==='\\r')){row.push(cell);cell='';if(c!==','){if(c==='\\r'&&text[i+1]==='\\n')i++;rows.push(row);row=[];}}else cell+=c;}if(quoted)throw Error('Invalid CSV');if(cell||row.length){row.push(cell);rows.push(row);}const headers=rows.shift();if(!headers||!headers.includes('id_despesa')||!headers.includes('ativa'))throw Error('Invalid sheet');return rows.filter(x=>x.length===headers.length).map(x=>headers.reduce((o,h,i)=>{o[h]=x[i];return o;},{})).filter(x=>x.ativa==='TRUE');})(LOOKUP(response,\"data\"));return {records,driverCode:LOOKUP(response,\"status\")};})()",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "create": {
+            "enabled": false,
+            "requestMethod": "POST",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "delete": {
+            "enabled": false,
+            "requestMethod": "DELETE",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "update": {
+            "enabled": false,
+            "requestMethod": "PATCH",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "replace": {
+            "enabled": false,
+            "requestMethod": "PUT",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          },
+          "retrieve": {
+            "enabled": false,
+            "requestMethod": "GET",
+            "responseMapper": {
+              "key": {
+                "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+                "formula": "{record: response.data, driverCode: response.status}",
+                "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+                "functions": [
+                  "LOOKUP"
+                ],
+                "dependencies": [
+                  [
+                    "response",
+                    "data"
+                  ],
+                  [
+                    "response",
+                    "status"
+                  ]
+                ]
+              },
+              "source": "expression"
+            }
+          }
+        }
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "cb": {
+            "type": "string",
+            "examples": [
+              ""
+            ]
+          },
+          "data": {
+            "type": "string",
+            "format": "date",
+            "examples": [
+              "2025-09-16"
+            ]
+          },
+          "pago": {
+            "type": "string",
+            "examples": [
+              ""
+            ]
+          },
+          "ativa": {
+            "type": "string",
+            "examples": [
+              "TRUE"
+            ]
+          },
+          "conta": {
+            "type": "string",
+            "examples": [
+              "Vivus",
+              "Ana"
+            ]
+          },
+          "valor": {
+            "type": "string",
+            "examples": [
+              "11.5",
+              "13.96",
+              "70",
+              "5.52",
+              "224.4"
+            ]
+          },
+          "imagem": {
+            "type": "string",
+            "format": "web-url",
+            "examples": [
+              "https://drive.google.com/open?id=1BcKAN1ja6U1EhayzhgN84eANxuSpe55S",
+              "https://drive.google.com/open?id=1wl2PUGNzGDQmoPqxrUmDAn4keKlrf30O"
+            ]
+          },
+          "categoria": {
+            "type": "string",
+            "examples": [
+              "Finanças",
+              "Desporto",
+              "Sessão Indv.",
+              "Outros",
+              "Salário"
+            ]
+          },
+          "descricao": {
+            "type": "string",
+            "examples": [
+              "retenção psicoterapia ",
+              "corrida Barcelos ",
+              "7346 | Inês Ferreira",
+              "comissão edenred ",
+              "CTR "
+            ]
+          },
+          "movimento": {
+            "type": "string",
+            "examples": [
+              "Saída",
+              "Entrada"
+            ]
+          },
+          "data_stein": {
+            "type": "string",
+            "format": "date",
+            "examples": [
+              "2025-09-16"
+            ]
+          },
+          "id_despesa": {
+            "type": "string",
+            "format": "integer",
+            "examples": [
+              "5520",
+              "5521",
+              "5522",
+              "5523",
+              "5524"
+            ]
+          },
+          "percentagem": {
+            "type": "string",
+            "examples": [
+              "0",
+              ""
+            ]
+          },
+          "classificacao": {
+            "type": "string",
+            "format": "integer",
+            "examples": [
+              "3",
+              "0",
+              "16",
+              "4"
+            ]
+          },
+          "iconcategoria": {
+            "type": "string",
+            "format": "web-url",
+            "examples": [
+              "https://cdn-icons-png.flaticon.com/128/1604/1604644.png",
+              "https://cdn-icons-png.flaticon.com/128/4893/4893592.png",
+              "FALSE",
+              "https://cdn-icons-png.flaticon.com/128/3388/3388759.png",
+              "https://cdn-icons-png.flaticon.com/128/12503/12503076.png"
+            ]
+          },
+          "valor_a_repor": {
+            "type": "string",
+            "examples": [
+              ""
+            ]
+          },
+          "vivus_pessoal": {
+            "type": "string",
+            "examples": [
+              "Vivusfisio",
+              "Pessoal"
+            ]
+          },
+          "despesas_fixas": {
+            "type": "string",
+            "examples": [
+              "Não",
+              "Sim"
+            ]
+          },
+          "fisioterapeuta": {
+            "type": "string",
+            "examples": [
+              "",
+              "Sonia Oliveira"
+            ]
+          },
+          "reposicao_valor": {
+            "type": "string",
+            "examples": [
+              "FALSE"
+            ]
+          },
+          "codigo_balancete": {
+            "type": "string",
+            "examples": [
+              ""
+            ]
+          },
+          "data_contabilidade": {
+            "type": "string",
+            "examples": [
+              "2025-09-16",
+              ""
+            ]
+          },
+          "data_contabilidade_stein": {
+            "type": "string",
+            "examples": [
+              "2025-09-16",
+              ""
+            ]
+          }
+        }
+      },
+      "identifiers": [
+        "id"
+      ]
+    },
+    "despesasidsdiretos": {
+      "id": "despesasidsdiretos",
+      "type": "restd",
+      "driverConfiguration": {
+        "base": {
+          "baseURL": {
+            "key": "https://docs.google.com/spreadsheets/d/18zBgIUcwIjTc1fOzsmh46CrBnX_usNrCSAHtGEc9RJQ/gviz/tq?gid=1862163396&headers=1&tq=select%20max(T)&tqx=out:json",
+            "source": "str"
+          },
+          "driverVersion": "1.0.0"
+        },
+        "type": "restd",
+        "headers": {
+          "key": [],
+          "source": "array"
+        },
+        "operations": {
+          "list": {
+            "enabled": true,
+            "relativePath": {
+              "key": "",
+              "source": "str"
+            },
+            "requestMethod": "GET",
+            "responseMapper": {
+              "key": {
+                "script": "(()=>{const text=LOOKUP(response,\"data\");const start=text.indexOf(\"setResponse(\");if(start<0)throw Error(\"Invalid response\");const result=DECODE_JSON(text.slice(start+12,text.lastIndexOf(\");\")));if(result.status!==\"ok\"||result.table.cols[0].type!==\"number\")throw Error(\"Invalid identifier\");const v=result.table.rows[0]?.c[0]?.v;if(v!==null&&v!==undefined&&(!(typeof v===\"number\"&&v%1===0&&v<=9007199254740991)||v<0))throw Error(\"Invalid identifier\");return {records:v==null?[]:[{id_despesa:v}],driverCode:LOOKUP(response,\"status\")};})()",
+                "formula": "(()=>{const text=LOOKUP(response,\"data\");const start=text.indexOf(\"setResponse(\");if(start<0)throw Error(\"Invalid response\");const result=DECODE_JSON(text.slice(start+12,text.lastIndexOf(\");\")));if(result.status!==\"ok\"||result.table.cols[0].type!==\"number\")throw Error(\"Invalid identifier\");const v=result.table.rows[0]?.c[0]?.v;if(v!==null&&v!==undefined&&(!(typeof v===\"number\"&&v%1===0&&v<=9007199254740991)||v<0))throw Error(\"Invalid identifier\");return {records:v==null?[]:[{id_despesa:v}],driverCode:LOOKUP(response,\"status\")};})()",
+                "functions": [
+                  "LOOKUP",
+                  "DECODE_JSON"
                 ],
                 "dependencies": [
                   [
