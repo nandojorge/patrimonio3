@@ -72,3 +72,7 @@ Executar localmente: `python3 -m http.server 8033 --bind 127.0.0.1` na pasta da 
 - Ao regressar às páginas de despesas e viagens, os recursos dos movimentos voltam a ser pedidos. Os totais da página de despesas também recarregam. A leitura CSV inclui um parâmetro de atualização para evitar reutilização da mesma URL pelo cache do navegador.
 - Corrigida a declaração da função IF na fórmula de edição de viagens, necessária para manter quilómetros de chegada opcionais no motor do navegador.
 - Verificação: 55 testes; navegador isolado com PUT simulado: resposta vazia mantém edição e valores, resposta com updatedRange regressa à lista. Nenhum registo real foi alterado.
+
+## Versão 3.0.6
+
+Indicador discreto no canto inferior direito, consultável por clique ou teclado. O processo de construção sincroniza automaticamente a versão indicada com package.json em todas as páginas HTML, sem alterar os fluxos da aplicação.
