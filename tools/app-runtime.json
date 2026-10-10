@@ -1529,7 +1529,8 @@
         "botaovisivel": 0,
         "cu": "",
         "reposicaovalor": "",
-        "id": ""
+        "id": "",
+        "editingRecord": null
       },
       "dataReferences": {
         "listasStein1": []
@@ -3133,7 +3134,8 @@
         "kmSaida": "",
         "localDestino": "",
         "kmChegada": "",
-        "botaovisivel": "0"
+        "botaovisivel": "0",
+        "editingRecord": null
       },
       "dataReferences": {
         "listasStein1": []
@@ -62027,8 +62029,12 @@
       ]
     },
     "21f02fe2-ff47-5f2a-a6bb-a3c660f4f3c9": {
-      "script": "IF(IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"\"),true,false)",
-      "formula": "IF(pageVars.reposicaovalor==\"\", true, false)",
+      "script": "!(IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),true)||IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"TRUE\")||IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"true\"))",
+      "formula": "!(IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),true)||IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"TRUE\")||IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"true\"))",
+      "functions": [
+        "IS_EQUAL",
+        "LOOKUP"
+      ],
       "dependencies": [
         [
           "pageVars",
@@ -62051,8 +62057,12 @@
       ]
     },
     "09ba065e-eab5-5e74-b6e8-9cc9b546bf1d": {
-      "script": "IF(IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"TRUE\"),true,false)||IF(IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"true\"),true,false)",
-      "formula": "IF(pageVars.reposicaovalor==\"TRUE\", true, false) || IF(pageVars.reposicaovalor==\"true\", true, false)",
+      "script": "(IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),true)||IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"TRUE\")||IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"true\"))",
+      "formula": "(IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),true)||IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"TRUE\")||IS_EQUAL(LOOKUP(pageVars,\"reposicaovalor\"),\"true\"))",
+      "functions": [
+        "IS_EQUAL",
+        "LOOKUP"
+      ],
       "dependencies": [
         [
           "pageVars",
@@ -82012,11 +82022,12 @@
               },
               "body": {
                 "key": {
-                  "script": "{\"condition\":{\"id_viagens\":LOOKUP(params,\"id\")},\"set\":{data_stein:LOOKUP(pageVars,\"data\"),km_saida:NUMBER(LOOKUP(pageVars,\"kmSaida\")),km_chegada:NUMBER(LOOKUP(pageVars,\"kmChegada\")),local_destino:LOOKUP(pageVars,\"localDestino\"),nome_paciente:LOOKUP(pageVars,\"nomePaciente\"),local_de_origem:LOOKUP(pageVars,\"localDeOrigem\")}}",
-                  "formula": "{\"condition\":{\"id_viagens\":LOOKUP(params,\"id\")},\"set\":{data_stein:LOOKUP(pageVars,\"data\"),km_saida:NUMBER(LOOKUP(pageVars,\"kmSaida\")),km_chegada:NUMBER(LOOKUP(pageVars,\"kmChegada\")),local_destino:LOOKUP(pageVars,\"localDestino\"),nome_paciente:LOOKUP(pageVars,\"nomePaciente\"),local_de_origem:LOOKUP(pageVars,\"localDeOrigem\")}}",
+                  "script": "{\"condition\":{\"id_viagens\":LOOKUP(params,\"id\")},\"set\":{data_stein:LOOKUP(pageVars,\"data\"),km_saida:NUMBER(LOOKUP(pageVars,\"kmSaida\")),km_chegada:IF(IS_EMPTY(LOOKUP(pageVars,\"kmChegada\")),\"\",NUMBER(LOOKUP(pageVars,\"kmChegada\"))),local_destino:LOOKUP(pageVars,\"localDestino\"),nome_paciente:LOOKUP(pageVars,\"nomePaciente\"),local_de_origem:LOOKUP(pageVars,\"localDeOrigem\")}}",
+                  "formula": "{\"condition\":{\"id_viagens\":LOOKUP(params,\"id\")},\"set\":{data_stein:LOOKUP(pageVars,\"data\"),km_saida:NUMBER(LOOKUP(pageVars,\"kmSaida\")),km_chegada:IF(IS_EMPTY(LOOKUP(pageVars,\"kmChegada\")),\"\",NUMBER(LOOKUP(pageVars,\"kmChegada\"))),local_destino:LOOKUP(pageVars,\"localDestino\"),nome_paciente:LOOKUP(pageVars,\"nomePaciente\"),local_de_origem:LOOKUP(pageVars,\"localDeOrigem\")}}",
                   "functions": [
                     "LOOKUP",
-                    "NUMBER"
+                    "NUMBER",
+                    "IS_EMPTY"
                   ],
                   "dependencies": [
                     [
@@ -85582,8 +85593,8 @@
             "connections": {
               "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
                 {
-                  "type": "output",
-                  "id": "4263321b.59d78c-success-output"
+                  "type": "node",
+                  "id": "editing.initialized"
                 }
               ]
             }
@@ -85798,6 +85809,82 @@
                 }
               ]
             }
+          },
+          "editing.initializeGuard": {
+            "type": "function",
+            "title": "If condition",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_225eb957.12fbd"
+            },
+            "inputs": {
+              "condition": {
+                "source": "expression",
+                "key": {
+                  "script": "!IS_EQUAL(LOOKUP(pageVars,\"editingRecord\"),LOOKUP(params,\"id\"))",
+                  "formula": "!IS_EQUAL(LOOKUP(pageVars,\"editingRecord\"),LOOKUP(params,\"id\"))",
+                  "functions": [
+                    "IS_EQUAL",
+                    "LOOKUP"
+                  ],
+                  "dependencies": [
+                    [
+                      "pageVars",
+                      "editingRecord"
+                    ],
+                    [
+                      "params",
+                      "id"
+                    ]
+                  ]
+                }
+              }
+            },
+            "connections": {
+              "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+                {
+                  "type": "node",
+                  "id": "4263321b.59d78c"
+                }
+              ],
+              "871f4881-b57c-41d5-9934-a69367733066": [
+                {
+                  "type": "output",
+                  "id": "4263321b.59d78c-success-output"
+                }
+              ]
+            }
+          },
+          "editing.initialized": {
+            "type": "function",
+            "title": "Set page variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_23268044.e1e2b"
+            },
+            "inputs": {
+              "variable": {
+                "source": "object",
+                "key": {
+                  "reference": {
+                    "source": "page-variable-ref",
+                    "key": "editingRecord"
+                  },
+                  "value": {
+                    "source": "parameter",
+                    "key": "id"
+                  }
+                }
+              }
+            },
+            "connections": {
+              "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+                {
+                  "type": "output",
+                  "id": "4263321b.59d78c-success-output"
+                }
+              ]
+            }
           }
         },
         "inputs": {
@@ -85823,7 +85910,7 @@
         },
         "startConnection": {
           "type": "node",
-          "id": "4263321b.59d78c"
+          "id": "editing.initializeGuard"
         },
         "variables": {},
         "pageId": "page.Page8",
@@ -106950,8 +107037,8 @@
             "connections": {
               "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
                 {
-                  "type": "output",
-                  "id": "2f0f0c6b.66e364-success-output"
+                  "type": "node",
+                  "id": "editing.initialized"
                 }
               ]
             }
@@ -107324,6 +107411,82 @@
                 }
               ]
             }
+          },
+          "editing.initializeGuard": {
+            "type": "function",
+            "title": "If condition",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_225eb957.12fbd"
+            },
+            "inputs": {
+              "condition": {
+                "source": "expression",
+                "key": {
+                  "script": "!IS_EQUAL(LOOKUP(pageVars,\"editingRecord\"),LOOKUP(params,\"iddespesa\"))",
+                  "formula": "!IS_EQUAL(LOOKUP(pageVars,\"editingRecord\"),LOOKUP(params,\"iddespesa\"))",
+                  "functions": [
+                    "IS_EQUAL",
+                    "LOOKUP"
+                  ],
+                  "dependencies": [
+                    [
+                      "pageVars",
+                      "editingRecord"
+                    ],
+                    [
+                      "params",
+                      "iddespesa"
+                    ]
+                  ]
+                }
+              }
+            },
+            "connections": {
+              "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+                {
+                  "type": "node",
+                  "id": "2f0f0c6b.66e364"
+                }
+              ],
+              "871f4881-b57c-41d5-9934-a69367733066": [
+                {
+                  "type": "output",
+                  "id": "2f0f0c6b.66e364-success-output"
+                }
+              ]
+            }
+          },
+          "editing.initialized": {
+            "type": "function",
+            "title": "Set page variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_23268044.e1e2b"
+            },
+            "inputs": {
+              "variable": {
+                "source": "object",
+                "key": {
+                  "reference": {
+                    "source": "page-variable-ref",
+                    "key": "editingRecord"
+                  },
+                  "value": {
+                    "source": "parameter",
+                    "key": "iddespesa"
+                  }
+                }
+              }
+            },
+            "connections": {
+              "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+                {
+                  "type": "output",
+                  "id": "2f0f0c6b.66e364-success-output"
+                }
+              ]
+            }
           }
         },
         "inputs": {
@@ -107349,7 +107512,7 @@
         },
         "startConnection": {
           "type": "node",
-          "id": "2f0f0c6b.66e364"
+          "id": "editing.initializeGuard"
         },
         "variables": {},
         "pageId": "page.Page4",

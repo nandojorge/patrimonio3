@@ -58,3 +58,10 @@ Os testes automatizados executam os grafos com serviços simulados. As verifica�
 `tools/app-runtime.json` contém a configuração legível usada nesta versão. Após uma alteração intencional, executar `npm run build:runtime` e `npm test`, atualizar a versão de cache nas páginas e verificar os fluxos no navegador. `build:runtime` incorpora a configuração no runtime existente; não recompila Next.js nem substitui o projeto original AppGyver.
 
 Executar localmente: `python3 -m http.server 8033 --bind 127.0.0.1` na pasta da app. Abrir `http://127.0.0.1:8033/`.
+
+## Edição — versão 3.0.4
+
+- O controlo «Valor a Repor» reconhece valores booleanos e os textos TRUE/FALSE devolvidos pela folha. O estado desligado deixa de desaparecer quando o valor guardado é FALSE.
+- A inicialização dos formulários de edição só repõe campos quando muda o identificador do registo. Recuperar o foco da mesma página preserva as alterações ainda não gravadas.
+- A edição de viagens conserva quilómetros de chegada em branco, em vez de converter esse valor opcional para zero.
+- Verificação: 51 testes; edição de despesa no navegador com PUT interceptado numa cópia isolada. Valor decimal e outros campos preservados, sem alterações à folha real.
