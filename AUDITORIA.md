@@ -65,3 +65,10 @@ Executar localmente: `python3 -m http.server 8033 --bind 127.0.0.1` na pasta da 
 - A inicialização dos formulários de edição só repõe campos quando muda o identificador do registo. Recuperar o foco da mesma página preserva as alterações ainda não gravadas.
 - A edição de viagens conserva quilómetros de chegada em branco, em vez de converter esse valor opcional para zero.
 - Verificação: 51 testes; edição de despesa no navegador com PUT interceptado numa cópia isolada. Valor decimal e outros campos preservados, sem alterações à folha real.
+
+## Confirmação e atualização da edição — versão 3.0.5
+
+- As edições de despesas e viagens só regressam à lista se a resposta PUT incluir um updatedRange não vazio. HTTP 200 sem esse indicador mostra «Atualização não confirmada», preserva os campos e permite nova tentativa. Este indicador confirma a atualização reportada pelo Stein; não constitui uma releitura independente dos campos na folha.
+- Ao regressar às páginas de despesas e viagens, os recursos dos movimentos voltam a ser pedidos. Os totais da página de despesas também recarregam. A leitura CSV inclui um parâmetro de atualização para evitar reutilização da mesma URL pelo cache do navegador.
+- Corrigida a declaração da função IF na fórmula de edição de viagens, necessária para manter quilómetros de chegada opcionais no motor do navegador.
+- Verificação: 55 testes; navegador isolado com PUT simulado: resposta vazia mantém edição e valores, resposta com updatedRange regressa à lista. Nenhum registo real foi alterado.

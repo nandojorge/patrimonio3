@@ -1,6 +1,6 @@
 {
   "name": "patrimonio3",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "private": true,
   "description": "Exportação estática da app Património com ferramentas de auditoria e regressão",
   "scripts": {

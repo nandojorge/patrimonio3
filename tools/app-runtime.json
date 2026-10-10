@@ -66325,7 +66325,9 @@
         "id": "0b140ab.33b6f91",
         "name": "",
         "eventSource": "page:6:onPageDidFocus",
-        "triggeredFlows": [],
+        "triggeredFlows": [
+          "5132376.75ed923"
+        ],
         "fallbackName": "Page focused",
         "pageId": "page.Pageviagensstein1findAll8c576ee.929ff77",
         "contextId": "data:viagensstein1findAll8c576ee.929ff77"
@@ -71886,7 +71888,9 @@
         "id": "f573873.113c982",
         "name": "",
         "eventSource": "page:1:onPageDidFocus",
-        "triggeredFlows": [],
+        "triggeredFlows": [
+          "8a6b1d2.e666450"
+        ],
         "fallbackName": "Page focused",
         "pageId": "page.Pageentradasstein1findAll0ae2703.fb4e209",
         "contextId": "data:entradasstein1findAll0ae2703.fb4e209"
@@ -71906,7 +71910,9 @@
         "id": "fd2f8be.9582c15",
         "name": "",
         "eventSource": "page:1:onPageDidFocus",
-        "triggeredFlows": [],
+        "triggeredFlows": [
+          "48b0666.cf70ca2"
+        ],
         "fallbackName": "Page focused",
         "pageId": "page.Pagedespesasstein1findAlleb26036.101a303",
         "contextId": "data:despesasstein1findAlleb26036.101a303"
@@ -82027,7 +82033,8 @@
                   "functions": [
                     "LOOKUP",
                     "NUMBER",
-                    "IS_EMPTY"
+                    "IS_EMPTY",
+                    "IF"
                   ],
                   "dependencies": [
                     [
@@ -82089,7 +82096,7 @@
               "180fc790-08a9-44c1-b7ab-265caf4f13e7": [
                 {
                   "type": "node",
-                  "id": "c98faf8.5e5968"
+                  "id": "edit.confirmed"
                 }
               ],
               "a4ec0b24-5bf1-40d3-97f0-91689c16c0be": [
@@ -82239,6 +82246,79 @@
                 {
                   "type": "node",
                   "id": "62fd473.d2d768"
+                }
+              ]
+            }
+          },
+          "edit.confirmed": {
+            "type": "function",
+            "title": "If condition",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_225eb957.12fbd"
+            },
+            "inputs": {
+              "condition": {
+                "source": "expression",
+                "key": {
+                  "script": "!IS_EMPTY(LOOKUP(LOOKUP(LOOKUP(outputs,\"aefeec81.f708a\"),\"resBodyParsed\"),\"updatedRange\"))",
+                  "formula": "!IS_EMPTY(LOOKUP(LOOKUP(LOOKUP(outputs,\"aefeec81.f708a\"),\"resBodyParsed\"),\"updatedRange\"))",
+                  "functions": [
+                    "IS_EMPTY",
+                    "LOOKUP"
+                  ],
+                  "dependencies": [
+                    [
+                      "outputs",
+                      "aefeec81.f708a",
+                      "resBodyParsed",
+                      "updatedRange"
+                    ]
+                  ]
+                }
+              }
+            },
+            "connections": {
+              "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+                {
+                  "type": "node",
+                  "id": "c98faf8.5e5968"
+                }
+              ],
+              "871f4881-b57c-41d5-9934-a69367733066": [
+                {
+                  "type": "node",
+                  "id": "edit.unconfirmed"
+                }
+              ]
+            }
+          },
+          "edit.unconfirmed": {
+            "type": "function",
+            "title": "Alert",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_bd0c25ba.5aaf3"
+            },
+            "inputs": {
+              "title": {
+                "key": "Atualização não confirmada",
+                "source": "str"
+              },
+              "message": {
+                "key": "O serviço respondeu, mas não confirmou nenhuma linha atualizada. As alterações permanecem no formulário. Verifique o registo antes de tentar novamente.",
+                "source": "str"
+              },
+              "dismissLabel": {
+                "key": "OK",
+                "source": "str"
+              }
+            },
+            "connections": {
+              "4b40389a-e389-4658-8a3b-4fe47959ade7": [
+                {
+                  "type": "node",
+                  "id": "audit.reset"
                 }
               ]
             }
@@ -106570,7 +106650,7 @@
               "180fc790-08a9-44c1-b7ab-265caf4f13e7": [
                 {
                   "type": "node",
-                  "id": "3c29a896.5e5968"
+                  "id": "edit.confirmed"
                 }
               ],
               "a4ec0b24-5bf1-40d3-97f0-91689c16c0be": [
@@ -106681,6 +106761,79 @@
                 {
                   "type": "output",
                   "id": "6ef17c69.47f764-success-output"
+                }
+              ]
+            }
+          },
+          "edit.confirmed": {
+            "type": "function",
+            "title": "If condition",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_225eb957.12fbd"
+            },
+            "inputs": {
+              "condition": {
+                "source": "expression",
+                "key": {
+                  "script": "!IS_EMPTY(LOOKUP(LOOKUP(LOOKUP(outputs,\"150e7bcb.e5e154\"),\"resBodyParsed\"),\"updatedRange\"))",
+                  "formula": "!IS_EMPTY(LOOKUP(LOOKUP(LOOKUP(outputs,\"150e7bcb.e5e154\"),\"resBodyParsed\"),\"updatedRange\"))",
+                  "functions": [
+                    "IS_EMPTY",
+                    "LOOKUP"
+                  ],
+                  "dependencies": [
+                    [
+                      "outputs",
+                      "150e7bcb.e5e154",
+                      "resBodyParsed",
+                      "updatedRange"
+                    ]
+                  ]
+                }
+              }
+            },
+            "connections": {
+              "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+                {
+                  "type": "node",
+                  "id": "3c29a896.5e5968"
+                }
+              ],
+              "871f4881-b57c-41d5-9934-a69367733066": [
+                {
+                  "type": "node",
+                  "id": "edit.unconfirmed"
+                }
+              ]
+            }
+          },
+          "edit.unconfirmed": {
+            "type": "function",
+            "title": "Alert",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_bd0c25ba.5aaf3"
+            },
+            "inputs": {
+              "title": {
+                "key": "Atualização não confirmada",
+                "source": "str"
+              },
+              "message": {
+                "key": "O serviço respondeu, mas não confirmou nenhuma linha atualizada. As alterações permanecem no formulário. Verifique o registo antes de tentar novamente.",
+                "source": "str"
+              },
+              "dismissLabel": {
+                "key": "OK",
+                "source": "str"
+              }
+            },
+            "connections": {
+              "4b40389a-e389-4658-8a3b-4fe47959ade7": [
+                {
+                  "type": "node",
+                  "id": "audit.reset"
                 }
               ]
             }
@@ -126963,8 +127116,16 @@
       "driverConfiguration": {
         "base": {
           "baseURL": {
-            "key": "https://docs.google.com/spreadsheets/d/18zBgIUcwIjTc1fOzsmh46CrBnX_usNrCSAHtGEc9RJQ/export?format=csv&gid=1862163396",
-            "source": "str"
+            "source": "expression",
+            "key": {
+              "script": "\"https://docs.google.com/spreadsheets/d/18zBgIUcwIjTc1fOzsmh46CrBnX_usNrCSAHtGEc9RJQ/export?format=csv&gid=1862163396\"+\"&_fresh=\"+STRING(NOW())",
+              "formula": "\"https://docs.google.com/spreadsheets/d/18zBgIUcwIjTc1fOzsmh46CrBnX_usNrCSAHtGEc9RJQ/export?format=csv&gid=1862163396\"+\"&_fresh=\"+STRING(NOW())",
+              "functions": [
+                "STRING",
+                "NOW"
+              ],
+              "dependencies": []
+            }
           },
           "driverVersion": "1.0.0"
         },

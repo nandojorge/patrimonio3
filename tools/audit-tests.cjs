@@ -12,7 +12,7 @@ function evaluate(script,state){return vm.runInNewContext('('+script+')',{...fun
 function run(fid,options={}){
  const f=app.logic.flows[fid];const pageVars={...app.screens[f.pageId].pageVariables,...options.pageVars};
  const state={pageVars,params:{id:'5',iddespesa:'5',conta:'Ana',valorarepor:'12.50',descricao:'Teste',...options.params},data:{despesasstein1:[],viagensstein1:[]},repeated:{current:{Valor:'12.50',nome:'Teste',Data:'2026-10-09',codigopagamento:'9',codigocontacto:'8'}}};
- const trace=[],requests=[],alerts=[],results={};let current=f.startConnection,confirmIndex=0,navigated=false;
+ const trace=[],requests=[],alerts=[],results={};state.outputs=results;let current=f.startConnection,confirmIndex=0,navigated=false;
  for(let step=0;step<60&&current?.type==='node';step++){
   const n=f.nodes[current.id];assert(n,'Dangling node '+current.id);trace.push(n.title);let channel;
   if(n.title==='Set page variable'){const a=n.inputs.variable.key;pageVars[a.reference.key]=a.value.source==='expression'?evaluate(a.value.key.script,state):a.value.key;channel=channels.set;}
@@ -20,7 +20,7 @@ function run(fid,options={}){
   else if(n.title==='Set data variable'){const a=n.inputs.assignment.key;const [field,node]=a.data.key.split('@@@');state.data[a.reference.key]=results[node][field];channel=channels.data;}
   else if(n.title==='If condition'){channel=evaluate(n.inputs.condition.key.script,state)?channels.true:channels.false;}
   else if(n.title==='Confirm'){channel=(options.confirms?.[confirmIndex++]??true)?channels.yes:channels.no;}
-  else if(n.title==='HTTP request'){requests.push({node:current.id,method:n.inputs.method.key,url:n.inputs.url.key,body:evaluate(n.inputs.body.key.script,state)});channel=options.failAt===current.id?channels[options.failure||'bad']:channels.ok;}
+  else if(n.title==='HTTP request'){results[current.id]={resBodyParsed:options.updateResponse===undefined?{updatedRange:'Despesas!A2:W2'}:options.updateResponse};requests.push({node:current.id,method:n.inputs.method.key,url:n.inputs.url.key,body:evaluate(n.inputs.body.key.script,state)});channel=options.failAt===current.id?channels[options.failure||'bad']:channels.ok;}
   else if(n.title==='Alert'){alerts.push(n.inputs.message.key);channel=channels.alert;}
   else if(n.title==='Navigate back'){navigated=true;current=null;break;}
   else throw Error('Unsupported '+n.title);
@@ -82,7 +82,7 @@ test('Direct links without record IDs cannot update expenses, trips or reimburse
 test('Only audited writes and main data loader changed; other original flows identical',()=>{
  if(!originalRoot)return;const before=read(originalRoot).config;
  for(const [id,f] of Object.entries(before.logic.flows))if(!flows.includes(id)&&!["48b0666.cf70ca2","2f0f0c6b.66e364","4263321b.59d78c"].includes(id))assert.deepEqual(app.logic.flows[id],f,id);
- assert.deepEqual(app.logic.events,before.logic.events);
+ for(const [id,event] of Object.entries(before.logic.events))if(!['fd2f8be.9582c15','f573873.113c982','0b140ab.33b6f91'].includes(id))assert.deepEqual(app.logic.events[id],event,id);
 });
 
 test('Unused history requests are absent from form mounting and focus',()=>{
@@ -98,4 +98,8 @@ for(const fid of [flows[0],flows[4],flows[5]])test('Direct identifier failure us
 test('Reimbursement checkbox remains visible for all stored boolean forms',()=>{for(const v of ['',null,false,'FALSE','false']){assert.equal(evaluate(app.expressions['21f02fe2-ff47-5f2a-a6bb-a3c660f4f3c9'].script,{pageVars:{reposicaovalor:v}}),true);assert.equal(evaluate(app.expressions['09ba065e-eab5-5e74-b6e8-9cc9b546bf1d'].script,{pageVars:{reposicaovalor:v}}),false);}for(const v of [true,'true','TRUE'])assert.equal(evaluate(app.expressions['09ba065e-eab5-5e74-b6e8-9cc9b546bf1d'].script,{pageVars:{reposicaovalor:v}}),true);});
 test('Editing a trip preserves optional blank arrival km',()=>{const r=run(flows[3],{pageVars:{kmSaida:'100',kmChegada:'',data:'2026-10-10'}});assert.equal(r.requests[0].body.set.km_chegada,'');});
 for(const [fid,key]of [['2f0f0c6b.66e364','iddespesa'],['4263321b.59d78c','id']])test('Focus cannot overwrite unsaved edits for the same record '+fid,()=>{const script=app.logic.flows[fid].nodes['editing.initializeGuard'].inputs.condition.key.script;assert.equal(evaluate(script,{pageVars:{editingRecord:'5'},params:{[key]:'5'}}),false);assert.equal(evaluate(script,{pageVars:{editingRecord:'5'},params:{[key]:'6'}}),true);assert.equal(evaluate(script,{pageVars:{editingRecord:null},params:{[key]:'5'}}),true);});
+
+for(const fid of [flows[1],flows[3]])test('HTTP 200 without updatedRange does not report a successful edit '+fid,()=>{for(const response of [{},{updatedRange:''},null]){const r=run(fid,{pageVars:{valor:'12,50',data:'2026-10-10',kmSaida:'100',kmChegada:''},updateResponse:response});assert(!r.navigated);assert(r.alerts.length===1);assert.equal(r.pageVars.valor,'12,50');assert.equal(String(r.pageVars.botaovisivel),'0');}});
+test('Returning to expenses, balances and trips refreshes the matching lists',()=>{for(const [focus,mount]of [['fd2f8be.9582c15','6c0dc38.f78bd05'],['f573873.113c982','bcc3597.d671050'],['0b140ab.33b6f91','7a8420c.28fafd3']])assert.deepEqual(app.logic.events[focus].triggeredFlows,app.logic.events[mount].triggeredFlows);assert.equal(app.dataResources.despesasdiretas.driverConfiguration.base.baseURL.source,'expression');});
+test('All edited write formulas declare the functions needed by the runtime',()=>{for(const fid of flows)for(const n of Object.values(app.logic.flows[fid].nodes))if(n.title==='HTTP request')for(const fn of n.inputs.body.key.script.match(/\b[A-Z][A-Z_]+(?=\()/g)||[])assert(n.inputs.body.key.functions.includes(fn),fid+': '+fn);});
 console.log(`\n${checks} checks passed. No live writes were made.`);
