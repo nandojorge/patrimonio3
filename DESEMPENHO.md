@@ -21,3 +21,7 @@ Em falha de leitura direta, cada fluxo tenta o recurso Stein original. Falha nos
 Medições pontuais da API: maior identificador 0,82 s direto / 5,0 s Stein; CSV 1,32 s direto / 4,23 s Stein. Não representam o tempo total de gravação: o POST Stein continua a poder demorar.
 
 Validação: 47 testes de regressão e parsing; comparação integral dos 500 registos; navegador com lista real; inserção simulada interceptada em servidor isolado, sem escrever na folha real.
+
+## Versão 3.0.7
+
+A leitura CSV filtra as linhas inativas antes de construir os objetos dos movimentos. Evita criar objetos para todo o histórico que seria descartado, mantendo os mesmos campos, ordem e registos ativos. Não reduz a latência do POST Stein. Comparação sintética de 8500 linhas/500 ativas confirmou resultados idênticos; testes existentes cobrem aspas e quebras de linha.
