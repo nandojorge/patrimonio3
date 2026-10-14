@@ -74,12 +74,6 @@
         "onPageDidMount": [
           {
             "id": "a679977d5c91a.7ec24a811c189"
-          },
-          {
-            "id": "6c0dc38.f78bd05"
-          },
-          {
-            "id": "bcc3597.d671050"
           }
         ]
       },
@@ -2524,9 +2518,6 @@
         "onPageDidMount": [
           {
             "id": "2ce38cc.c94d499"
-          },
-          {
-            "id": "7a8420c.28fafd3"
           }
         ],
         "onPageDidFocus": [
@@ -72544,7 +72535,7 @@
               "60c0a221-8687-465d-9249-53c98311db9b": [
                 {
                   "type": "node",
-                  "id": "93581c1.a5cc9e"
+                  "id": "audit.recheck.f325090b.4931b8"
                 }
               ]
             }
@@ -72608,7 +72599,151 @@
               "60c0a221-8687-465d-9249-53c98311db9b": [
                 {
                   "type": "node",
+                  "id": "audit.recheck.f325090b.4931b8"
+                }
+              ]
+            }
+          },
+          "audit.recheck.f325090b.4931b8": {
+            "type": "function",
+            "title": "Get record collection",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_recheck.f325090b.4931b8"
+            },
+            "inputs": {
+              "request": {
+                "key": {
+                  "resourceName": {
+                    "source": "resource",
+                    "key": "despesasidsdiretos"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "81ba0b09-224c-4016-8f13-839c8a3ef20a": [
+                {
+                  "type": "node",
+                  "id": "audit.recheckSet.f325090b.4931b8"
+                }
+              ],
+              "08036d98-5276-477e-885d-bf5a093053e3": [
+                {
+                  "type": "node",
+                  "id": "audit.error"
+                }
+              ]
+            }
+          },
+          "audit.recheckSet.f325090b.4931b8": {
+            "type": "function",
+            "title": "Set data variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_recheckSet.f325090b.4931b8"
+            },
+            "inputs": {
+              "assignment": {
+                "source": "object",
+                "key": {
+                  "data": {
+                    "source": "node",
+                    "key": "records@@@audit.recheck.f325090b.4931b8"
+                  },
+                  "reference": {
+                    "source": "data-reference",
+                    "key": "despesasstein2"
+                  }
+                }
+              }
+            },
+            "connections": {
+              "60c0a221-8687-465d-9249-53c98311db9b": [
+                {
+                  "type": "node",
+                  "id": "audit.compare.f325090b.4931b8"
+                }
+              ]
+            }
+          },
+          "audit.compare.f325090b.4931b8": {
+            "type": "function",
+            "title": "If condition",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_compare.f325090b.4931b8"
+            },
+            "inputs": {
+              "condition": {
+                "source": "object",
+                "key": {
+                  "script": "IS_EQUAL(IF(IS_EMPTY(LOOKUP(data,\"despesasstein1\")),0,MAX(MAP(LOOKUP(data,\"despesasstein1\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))),IF(IS_EMPTY(LOOKUP(data,\"despesasstein2\")),0,MAX(MAP(LOOKUP(data,\"despesasstein2\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))))",
+                  "formula": "IS_EQUAL(IF(IS_EMPTY(LOOKUP(data,\"despesasstein1\")),0,MAX(MAP(LOOKUP(data,\"despesasstein1\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))),IF(IS_EMPTY(LOOKUP(data,\"despesasstein2\")),0,MAX(MAP(LOOKUP(data,\"despesasstein2\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))))",
+                  "functions": [
+                    "IS_EQUAL",
+                    "IF",
+                    "IS_EMPTY",
+                    "MAX",
+                    "MAP",
+                    "LOOKUP",
+                    "NUMBER"
+                  ],
+                  "dependencies": [
+                    [
+                      "data",
+                      "despesasstein1"
+                    ],
+                    [
+                      "data",
+                      "despesasstein2"
+                    ]
+                  ]
+                }
+              }
+            },
+            "connections": {
+              "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+                {
+                  "type": "node",
                   "id": "93581c1.a5cc9e"
+                }
+              ],
+              "871f4881-b57c-41d5-9934-a69367733066": [
+                {
+                  "type": "node",
+                  "id": "audit.staleData"
+                }
+              ]
+            }
+          },
+          "audit.staleData": {
+            "type": "function",
+            "title": "Alert",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_staleData"
+            },
+            "inputs": {
+              "title": {
+                "key": "Dados alterados",
+                "source": "str"
+              },
+              "message": {
+                "key": "Outra sessão gravou entretanto. A operação foi cancelada para evitar duplicados. Atualize a página e tente novamente.",
+                "source": "str"
+              },
+              "dismissLabel": {
+                "key": "OK",
+                "source": "str"
+              }
+            },
+            "connections": {
+              "4b40389a-e389-4658-8a3b-4fe47959ade7": [
+                {
+                  "type": "node",
+                  "id": "audit.reset"
                 }
               ]
             }
@@ -76745,7 +76880,7 @@
               "60c0a221-8687-465d-9249-53c98311db9b": [
                 {
                   "type": "node",
-                  "id": "636344a1.947d8c"
+                  "id": "audit.recheck.80c0e322.fee95"
                 }
               ]
             }
@@ -76839,7 +76974,151 @@
               "60c0a221-8687-465d-9249-53c98311db9b": [
                 {
                   "type": "node",
+                  "id": "audit.recheck.80c0e322.fee95"
+                }
+              ]
+            }
+          },
+          "audit.recheck.80c0e322.fee95": {
+            "type": "function",
+            "title": "Get record collection",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_recheck.80c0e322.fee95"
+            },
+            "inputs": {
+              "request": {
+                "key": {
+                  "resourceName": {
+                    "source": "resource",
+                    "key": "despesasidsdiretos"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "81ba0b09-224c-4016-8f13-839c8a3ef20a": [
+                {
+                  "type": "node",
+                  "id": "audit.recheckSet.80c0e322.fee95"
+                }
+              ],
+              "08036d98-5276-477e-885d-bf5a093053e3": [
+                {
+                  "type": "node",
+                  "id": "audit.error"
+                }
+              ]
+            }
+          },
+          "audit.recheckSet.80c0e322.fee95": {
+            "type": "function",
+            "title": "Set data variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_recheckSet.80c0e322.fee95"
+            },
+            "inputs": {
+              "assignment": {
+                "source": "object",
+                "key": {
+                  "data": {
+                    "source": "node",
+                    "key": "records@@@audit.recheck.80c0e322.fee95"
+                  },
+                  "reference": {
+                    "source": "data-reference",
+                    "key": "despesasstein2"
+                  }
+                }
+              }
+            },
+            "connections": {
+              "60c0a221-8687-465d-9249-53c98311db9b": [
+                {
+                  "type": "node",
+                  "id": "audit.compare.80c0e322.fee95"
+                }
+              ]
+            }
+          },
+          "audit.compare.80c0e322.fee95": {
+            "type": "function",
+            "title": "If condition",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_compare.80c0e322.fee95"
+            },
+            "inputs": {
+              "condition": {
+                "source": "object",
+                "key": {
+                  "script": "IS_EQUAL(IF(IS_EMPTY(LOOKUP(data,\"despesasstein1\")),0,MAX(MAP(LOOKUP(data,\"despesasstein1\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))),IF(IS_EMPTY(LOOKUP(data,\"despesasstein2\")),0,MAX(MAP(LOOKUP(data,\"despesasstein2\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))))",
+                  "formula": "IS_EQUAL(IF(IS_EMPTY(LOOKUP(data,\"despesasstein1\")),0,MAX(MAP(LOOKUP(data,\"despesasstein1\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))),IF(IS_EMPTY(LOOKUP(data,\"despesasstein2\")),0,MAX(MAP(LOOKUP(data,\"despesasstein2\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))))",
+                  "functions": [
+                    "IS_EQUAL",
+                    "IF",
+                    "IS_EMPTY",
+                    "MAX",
+                    "MAP",
+                    "LOOKUP",
+                    "NUMBER"
+                  ],
+                  "dependencies": [
+                    [
+                      "data",
+                      "despesasstein1"
+                    ],
+                    [
+                      "data",
+                      "despesasstein2"
+                    ]
+                  ]
+                }
+              }
+            },
+            "connections": {
+              "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+                {
+                  "type": "node",
                   "id": "636344a1.947d8c"
+                }
+              ],
+              "871f4881-b57c-41d5-9934-a69367733066": [
+                {
+                  "type": "node",
+                  "id": "audit.staleData"
+                }
+              ]
+            }
+          },
+          "audit.staleData": {
+            "type": "function",
+            "title": "Alert",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_staleData"
+            },
+            "inputs": {
+              "title": {
+                "key": "Dados alterados",
+                "source": "str"
+              },
+              "message": {
+                "key": "Outra sessão gravou entretanto. A operação foi cancelada para evitar duplicados. Atualize a página e tente novamente.",
+                "source": "str"
+              },
+              "dismissLabel": {
+                "key": "OK",
+                "source": "str"
+              }
+            },
+            "connections": {
+              "4b40389a-e389-4658-8a3b-4fe47959ade7": [
+                {
+                  "type": "node",
+                  "id": "audit.reset"
                 }
               ]
             }
@@ -90199,7 +90478,7 @@
               "60c0a221-8687-465d-9249-53c98311db9b": [
                 {
                   "type": "node",
-                  "id": "fe229d68.85b23"
+                  "id": "audit.recheck.2474c70.1b28e"
                 }
               ]
             }
@@ -90231,6 +90510,150 @@
                 {
                   "type": "node",
                   "id": "2474c70.1b28e"
+                }
+              ]
+            }
+          },
+          "audit.recheck.2474c70.1b28e": {
+            "type": "function",
+            "title": "Get record collection",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_recheck.2474c70.1b28e"
+            },
+            "inputs": {
+              "request": {
+                "key": {
+                  "resourceName": {
+                    "source": "resource",
+                    "key": "viagensstein"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "81ba0b09-224c-4016-8f13-839c8a3ef20a": [
+                {
+                  "type": "node",
+                  "id": "audit.recheckSet.2474c70.1b28e"
+                }
+              ],
+              "08036d98-5276-477e-885d-bf5a093053e3": [
+                {
+                  "type": "node",
+                  "id": "audit.error"
+                }
+              ]
+            }
+          },
+          "audit.recheckSet.2474c70.1b28e": {
+            "type": "function",
+            "title": "Set data variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_recheckSet.2474c70.1b28e"
+            },
+            "inputs": {
+              "assignment": {
+                "source": "object",
+                "key": {
+                  "data": {
+                    "source": "node",
+                    "key": "records@@@audit.recheck.2474c70.1b28e"
+                  },
+                  "reference": {
+                    "source": "data-reference",
+                    "key": "viagensstein2"
+                  }
+                }
+              }
+            },
+            "connections": {
+              "60c0a221-8687-465d-9249-53c98311db9b": [
+                {
+                  "type": "node",
+                  "id": "audit.compare.2474c70.1b28e"
+                }
+              ]
+            }
+          },
+          "audit.compare.2474c70.1b28e": {
+            "type": "function",
+            "title": "If condition",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_compare.2474c70.1b28e"
+            },
+            "inputs": {
+              "condition": {
+                "source": "object",
+                "key": {
+                  "script": "IS_EQUAL(IF(IS_EMPTY(LOOKUP(data,\"viagensstein1\")),0,MAX(MAP(LOOKUP(data,\"viagensstein1\"),item=>(NUMBER(LOOKUP(item,\"id_viagens\")))))),IF(IS_EMPTY(LOOKUP(data,\"viagensstein2\")),0,MAX(MAP(LOOKUP(data,\"viagensstein2\"),item=>(NUMBER(LOOKUP(item,\"id_viagens\")))))))",
+                  "formula": "IS_EQUAL(IF(IS_EMPTY(LOOKUP(data,\"viagensstein1\")),0,MAX(MAP(LOOKUP(data,\"viagensstein1\"),item=>(NUMBER(LOOKUP(item,\"id_viagens\")))))),IF(IS_EMPTY(LOOKUP(data,\"viagensstein2\")),0,MAX(MAP(LOOKUP(data,\"viagensstein2\"),item=>(NUMBER(LOOKUP(item,\"id_viagens\")))))))",
+                  "functions": [
+                    "IS_EQUAL",
+                    "IF",
+                    "IS_EMPTY",
+                    "MAX",
+                    "MAP",
+                    "LOOKUP",
+                    "NUMBER"
+                  ],
+                  "dependencies": [
+                    [
+                      "data",
+                      "viagensstein1"
+                    ],
+                    [
+                      "data",
+                      "viagensstein2"
+                    ]
+                  ]
+                }
+              }
+            },
+            "connections": {
+              "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+                {
+                  "type": "node",
+                  "id": "fe229d68.85b23"
+                }
+              ],
+              "871f4881-b57c-41d5-9934-a69367733066": [
+                {
+                  "type": "node",
+                  "id": "audit.staleData"
+                }
+              ]
+            }
+          },
+          "audit.staleData": {
+            "type": "function",
+            "title": "Alert",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_staleData"
+            },
+            "inputs": {
+              "title": {
+                "key": "Dados alterados",
+                "source": "str"
+              },
+              "message": {
+                "key": "Outra sessão gravou entretanto. A operação foi cancelada para evitar duplicados. Atualize a página e tente novamente.",
+                "source": "str"
+              },
+              "dismissLabel": {
+                "key": "OK",
+                "source": "str"
+              }
+            },
+            "connections": {
+              "4b40389a-e389-4658-8a3b-4fe47959ade7": [
+                {
+                  "type": "node",
+                  "id": "audit.reset"
                 }
               ]
             }
@@ -114448,7 +114871,7 @@
               "60c0a221-8687-465d-9249-53c98311db9b": [
                 {
                   "type": "node",
-                  "id": "41e789d6.06ae28"
+                  "id": "audit.recheck.f990588c.3257d8"
                 }
               ]
             }
@@ -114512,7 +114935,151 @@
               "60c0a221-8687-465d-9249-53c98311db9b": [
                 {
                   "type": "node",
+                  "id": "audit.recheck.f990588c.3257d8"
+                }
+              ]
+            }
+          },
+          "audit.recheck.f990588c.3257d8": {
+            "type": "function",
+            "title": "Get record collection",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_recheck.f990588c.3257d8"
+            },
+            "inputs": {
+              "request": {
+                "key": {
+                  "resourceName": {
+                    "source": "resource",
+                    "key": "despesasidsdiretos"
+                  }
+                },
+                "source": "object"
+              }
+            },
+            "connections": {
+              "81ba0b09-224c-4016-8f13-839c8a3ef20a": [
+                {
+                  "type": "node",
+                  "id": "audit.recheckSet.f990588c.3257d8"
+                }
+              ],
+              "08036d98-5276-477e-885d-bf5a093053e3": [
+                {
+                  "type": "node",
+                  "id": "audit.error"
+                }
+              ]
+            }
+          },
+          "audit.recheckSet.f990588c.3257d8": {
+            "type": "function",
+            "title": "Set data variable",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_recheckSet.f990588c.3257d8"
+            },
+            "inputs": {
+              "assignment": {
+                "source": "object",
+                "key": {
+                  "data": {
+                    "source": "node",
+                    "key": "records@@@audit.recheck.f990588c.3257d8"
+                  },
+                  "reference": {
+                    "source": "data-reference",
+                    "key": "despesasstein2"
+                  }
+                }
+              }
+            },
+            "connections": {
+              "60c0a221-8687-465d-9249-53c98311db9b": [
+                {
+                  "type": "node",
+                  "id": "audit.compare.f990588c.3257d8"
+                }
+              ]
+            }
+          },
+          "audit.compare.f990588c.3257d8": {
+            "type": "function",
+            "title": "If condition",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_compare.f990588c.3257d8"
+            },
+            "inputs": {
+              "condition": {
+                "source": "object",
+                "key": {
+                  "script": "IS_EQUAL(IF(IS_EMPTY(LOOKUP(data,\"despesasstein1\")),0,MAX(MAP(LOOKUP(data,\"despesasstein1\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))),IF(IS_EMPTY(LOOKUP(data,\"despesasstein2\")),0,MAX(MAP(LOOKUP(data,\"despesasstein2\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))))",
+                  "formula": "IS_EQUAL(IF(IS_EMPTY(LOOKUP(data,\"despesasstein1\")),0,MAX(MAP(LOOKUP(data,\"despesasstein1\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))),IF(IS_EMPTY(LOOKUP(data,\"despesasstein2\")),0,MAX(MAP(LOOKUP(data,\"despesasstein2\"),item=>(NUMBER(LOOKUP(item,\"id_despesa\")))))))",
+                  "functions": [
+                    "IS_EQUAL",
+                    "IF",
+                    "IS_EMPTY",
+                    "MAX",
+                    "MAP",
+                    "LOOKUP",
+                    "NUMBER"
+                  ],
+                  "dependencies": [
+                    [
+                      "data",
+                      "despesasstein1"
+                    ],
+                    [
+                      "data",
+                      "despesasstein2"
+                    ]
+                  ]
+                }
+              }
+            },
+            "connections": {
+              "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+                {
+                  "type": "node",
                   "id": "41e789d6.06ae28"
+                }
+              ],
+              "871f4881-b57c-41d5-9934-a69367733066": [
+                {
+                  "type": "node",
+                  "id": "audit.staleData"
+                }
+              ]
+            }
+          },
+          "audit.staleData": {
+            "type": "function",
+            "title": "Alert",
+            "ref": {
+              "type": "flow-function",
+              "id": "own_staleData"
+            },
+            "inputs": {
+              "title": {
+                "key": "Dados alterados",
+                "source": "str"
+              },
+              "message": {
+                "key": "Outra sessão gravou entretanto. A operação foi cancelada para evitar duplicados. Atualize a página e tente novamente.",
+                "source": "str"
+              },
+              "dismissLabel": {
+                "key": "OK",
+                "source": "str"
+              }
+            },
+            "connections": {
+              "4b40389a-e389-4658-8a3b-4fe47959ade7": [
+                {
+                  "type": "node",
+                  "id": "audit.reset"
                 }
               ]
             }

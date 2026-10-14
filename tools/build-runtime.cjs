@@ -11,6 +11,8 @@ for(const name of fs.readdirSync(root).filter(name=>name.endsWith('.html'))){
   const file=path.join(root,name);
   let html=fs.readFileSync(file,'utf8').replace(/<details id="patrimonio-version"[\s\S]*?<\/details>/g,'');
   html=html.replace('</body>',badge+'</body>').replace(/(_app-257c353de153362d\.js\?v=)[^" ]+/g,'$1'+version);
+  // Adiar o runtime JSONata (não usado pela app) para não bloquear o parsing.
+  html=html.replace(/<script type="text\/javascript" src="nodered\.min\.js">/g,'<script type="text/javascript" src="nodered.min.js" defer>');
   fs.writeFileSync(file,html);
 }
 console.log('Configuração incorporada no runtime. Execute npm test e verifique a app no navegador.');
