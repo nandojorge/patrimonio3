@@ -500,9 +500,6 @@
            "id": "c7c2cc80-7bbc-44a2-abbc-004c67e51637",
            "ch": [
             {
-             "id": "25c8f442-1a39-ef84-6a4f-3387f5af4916"
-            },
-            {
              "id": "f8b90b26-d1c2-46a5-9edd-16a57377f84a"
             }
            ]
@@ -517,6 +514,9 @@
              "id": "c18da308-7ef5-49da-ba7e-628b43de1516"
             }
            ]
+          },
+          {
+           "id": "25c8f442-1a39-ef84-6a4f-3387f5af4916"
           }
          ]
         }
@@ -62378,7 +62378,7 @@
       "backfaceVisibility": "visible",
       "opacity": 1,
       "position": "relative",
-      "alignSelf": "flex-start",
+      "alignSelf": "center",
       "flexGrow": 0,
       "flexShrink": 0,
       "flexBasis": "auto",
@@ -62389,7 +62389,8 @@
       "borderLeftWidth": 0,
       "borderTopWidth": 0,
       "borderBottomWidth": 0,
-      "paddingRight": 8
+      "paddingRight": 4,
+      "paddingLeft": 8
      }
     },
     "dynamicProps": [],
