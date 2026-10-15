@@ -166,11 +166,13 @@ test('O atalho só se aplica na montagem, não ao refocar a página',()=>{
  assert(app.screens['page.Page2'].events.onPageDidMount.some(e=>e.id==='atalho.mount'));
  assert(!app.screens['page.Page2'].events.onPageDidFocus.some(e=>e.id==='atalho.mount'));
 });
-test('O botão ★ guarda o atalho com os campos do formulário',()=>{
- const btn=Object.values(app.components).find(c=>c.pageId==='page.Page2'&&c.props.label==='★ Guardar como atalho');
- assert(btn,'botão ★ ausente');
- assert.equal(btn.props.events.tap[0].id,'atalho.saveTap');
- assert.deepEqual(app.logic.events['atalho.saveTap'].triggeredFlows,['atalho.save']);
+test('A estrela ★ no cabeçalho guarda o atalho com os campos do formulário',()=>{
+ const star=Object.values(app.components).find(c=>c.pageId==='page.Page2'&&c.props.content==='★');
+ assert(star,'estrela ★ ausente');
+ assert.equal(star.props.events.tap[0].id,'atalho.saveTap');
+ assert(star.props.bindings.some(b=>b.targetProp==='visible'),'visibilidade da estrela em falta');
+ assert.equal(app.logic.events['atalho.saveTap'].eventSource,'page:2:component:'+star.id+':tap');
+ assert(!Object.values(app.components).some(c=>c.props.label==='★ Guardar como atalho'),'botão grande ainda presente');
  const r=run('atalho.save',{pageVars:expenseVars});
  assert.equal(r.requests.length,1);
  assert.equal(r.requests[0].url,'https://api.steinhq.com/v1/storages/66fe6b324d11fd04f0335b3a/atalhos');
