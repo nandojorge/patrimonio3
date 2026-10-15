@@ -30,9 +30,20 @@ function run(fid,options={}){
 }
 const expenseVars={valordespesa:'12,50',datadespesa:'2026-10-09',descricaodespesa:'Teste',categoriadespesa:'Transferência',entradasaida:'Saída',vivuspessoal:'Pessoal',conta:'Ana',contadestino:'Vivus'};
 const flows=['f990588c.3257d8','6ef17c69.47f764','2474c70.1b28e','62fd473.d2d768','80c0e322.fee95','f325090b.4931b8'];
-test('All 10 screens, six original resources, navigation preserved',()=>{
+test('All original screens plus Atalhos page, resources and navigation preserved',()=>{
  if(!originalRoot)return;const before=read(originalRoot).config;
- assert.deepEqual(Object.keys(app.screens),Object.keys(before.screens));assert.deepEqual(app.navigation,before.navigation);
+ for(const k of Object.keys(before.screens))assert(k in app.screens,k);
+ assert('page.Page12' in app.screens);
+ assert.equal(Object.keys(app.screens).length,Object.keys(before.screens).length+1);
+ const {tabs:bt,...bmobile}=before.navigation.mobile;const {tabs:at,...amobile}=app.navigation.mobile;
+ assert.deepEqual(amobile,bmobile);assert.deepEqual(app.navigation.custom,before.navigation.custom);
+ assert.deepEqual(app.navigation.legacyLayouts,before.navigation.legacyLayouts);
+ for(const s of before.navigation.screens)assert(s in app.screens,s);
+ assert.deepEqual(app.navigation.screens.slice(0,before.navigation.screens.length),before.navigation.screens);
+ assert.equal(app.navigation.screens.length,before.navigation.screens.length+1);
+ assert.equal(app.navigation.screens.at(-1),'page.Page12');
+ assert.deepEqual(at.slice(0,bt.length),bt);assert.equal(at.length,bt.length+1);
+ assert.equal(at[bt.length].pageId,'page.Page12');
  for(const name of Object.keys(before.dataResources))assert.deepEqual(app.dataResources[name],before.dataResources[name]);
 });
 test('Every graph connection and expression binding resolves',()=>{
@@ -106,4 +117,23 @@ for(const [fid,key]of [['2f0f0c6b.66e364','iddespesa'],['4263321b.59d78c','id']]
 for(const fid of [flows[1],flows[3]])test('HTTP 200 without updatedRange does not report a successful edit '+fid,()=>{for(const response of [{},{updatedRange:''},null]){const r=run(fid,{pageVars:{valor:'12,50',data:'2026-10-10',kmSaida:'100',kmChegada:''},updateResponse:response});assert(!r.navigated);assert(r.alerts.length===1);assert.equal(r.pageVars.valor,'12,50');assert.equal(String(r.pageVars.botaovisivel),'0');}});
 test('Returning to expenses, balances and trips refreshes the matching lists',()=>{for(const [focus,mount]of [['fd2f8be.9582c15','6c0dc38.f78bd05'],['f573873.113c982','bcc3597.d671050'],['0b140ab.33b6f91','7a8420c.28fafd3']])assert.deepEqual(app.logic.events[focus].triggeredFlows,app.logic.events[mount].triggeredFlows);assert.equal(app.dataResources.despesasdiretas.driverConfiguration.base.baseURL.source,'expression');});
 test('All edited write formulas declare the functions needed by the runtime',()=>{for(const fid of flows)for(const n of Object.values(app.logic.flows[fid].nodes))if(n.title==='HTTP request')for(const fn of n.inputs.body.key.script.match(/\b[A-Z][A-Z_]+(?=\()/g)||[])assert(n.inputs.body.key.functions.includes(fn),fid+': '+fn);});
+test('Hibernate navConfig in every HTML mirrors the navigation',()=>{
+ const nav=app.navigation,tabs=nav.mobile.tabs;
+ for(const name of fs.readdirSync(root).filter(f=>f.endsWith('.html'))){
+  const m=fs.readFileSync(path.join(root,name),'utf8').match(/<script id="__NEXT_DATA__" type="application\/json">([\s\S]*?)<\/script>/);
+  if(!m)continue;const nd=JSON.parse(m[1]);
+  const raw=nd&&nd.props&&nd.props.pageProps&&nd.props.pageProps.initialState;if(!raw)continue;
+  const st=JSON.parse(raw);
+  assert.equal(st.navConfig.tabs.length,tabs.length,name);
+  assert.deepEqual(st.navConfig.tabs.map(t=>t.title),tabs.map(t=>t.title),name);
+  assert.deepEqual(st.navConfig.screens,Object.keys(app.screens),name);
+  for(const [i,t] of tabs.entries())assert.equal(st.navConfig.routeConfigs['t'+i].initialRouteName,t.pageId,name+' t'+i);
+ }
+});
+test('Every navigation tab has desktop and mobile route files',()=>{
+ for(const t of app.navigation.mobile.tabs){
+  assert(fs.existsSync(path.join(root,t.pageId+'.html')),t.pageId+'.html');
+  assert(fs.existsSync(path.join(root,'m-'+t.pageId+'.html')),'m-'+t.pageId+'.html');
+ }
+});
 console.log(`\n${checks} checks passed. No live writes were made.`);
