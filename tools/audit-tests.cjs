@@ -15,7 +15,7 @@ function run(fid,options={}){
  const trace=[],requests=[],alerts=[],results={};state.outputs=results;let current=f.startConnection,confirmIndex=0,navigated=false;
  for(let step=0;step<60&&current?.type==='node';step++){
   const n=f.nodes[current.id];assert(n,'Dangling node '+current.id);trace.push(n.title);let channel;
-  if(n.title==='Set page variable'){const a=n.inputs.variable.key;pageVars[a.reference.key]=a.value.source==='expression'?evaluate(a.value.key.script,state):a.value.key;channel=channels.set;}
+  if(n.title==='Set page variable'){const a=n.inputs.variable.key;pageVars[a.reference.key]=a.value.source==='expression'?evaluate(a.value.key.script,state):a.value.source==='parameter'?state.params[a.value.key]:a.value.key;channel=channels.set;}
   else if(n.title==='Get record collection'){results[current.id]={records:options.records||[{id_despesa:'20',id_viagens:'10'}]};channel=(options.readFailure||(options.directReadFailure&&current.id==='audit.readIDs'))?channels.getError:channels.get;if(options.recheckRecords&&current.id.startsWith('audit.recheck.'))results[current.id]={records:options.recheckRecords};}
   else if(n.title==='Set data variable'){const a=n.inputs.assignment.key;const [field,node]=a.data.key.split('@@@');state.data[a.reference.key]=results[node][field];channel=channels.data;}
   else if(n.title==='If condition'){const script=n.inputs.condition.key.script;if(script.includes('audit.recheckSet')||current.id.startsWith('audit.compare.')){const isViagens=script.includes('viagensstein1');const ref1=isViagens?'viagensstein1':'despesasstein1';const ref2=isViagens?'viagensstein2':'despesasstein2';const data1=state.data[ref1]||[];const data2=state.data[ref2]||[];const max1=data1.length?Math.max(...data1.map(r=>Number(r.id_despesa||r.id_viagens))):0;const max2=data2.length?Math.max(...data2.map(r=>Number(r.id_despesa||r.id_viagens))):0;channel=max1===max2?channels.true:channels.false;}else{channel=evaluate(script,state)?channels.true:channels.false;}}
@@ -135,5 +135,69 @@ test('Every navigation tab has desktop and mobile route files',()=>{
   assert(fs.existsSync(path.join(root,t.pageId+'.html')),t.pageId+'.html');
   assert(fs.existsSync(path.join(root,'m-'+t.pageId+'.html')),'m-'+t.pageId+'.html');
  }
+});
+test('Atalho preenche os campos da nova despesa quando o sinalizador está ativo',()=>{
+ const r=run('atalho.apply',{params:{usaratalho:'1',valordespesa:'12,50',categoriadespesa:'Compras',conta:'Ana',entradasaida:'Saída',cu:'C1'}});
+ assert.equal(r.pageVars.valordespesa,'12,50');
+ assert.equal(r.pageVars.categoriadespesa,'Compras');
+ assert.equal(r.pageVars.conta,'Ana');
+ assert.equal(r.pageVars.entradasaida,'Saída');
+ assert.equal(r.pageVars.cu,'C1');
+});
+test('Sem o sinalizador do atalho nada é sobrescrito na nova despesa',()=>{
+ const r=run('atalho.apply',{params:{}});
+ for(const f of ['valordespesa','categoriadespesa','conta','cu'])
+  assert.equal(r.pageVars[f],app.screens['page.Page2'].pageVariables[f],f);
+});
+test('O atalho abre a nova despesa com todos os campos do atalho',()=>{
+ const open=app.logic.flows['atalhos.use'];
+ const n=open.nodes[open.startConnection.id];
+ const p=n.inputs.params.key;
+ assert.equal(p.usaratalho.key,'1');
+ for(const f of ['valordespesa','entradasaida','vivuspessoal','categoriadespesa','despesafixa','descricaodespesa','conta','contacontabilidade','percentagemarepor','valorarepor','cu'])
+  assert(p[f],'param '+f);
+ const ev=app.logic.events['atalhos.tap'];
+ assert.deepEqual(ev.triggeredFlows,['atalhos.use']);
+});
+test('O atalho só se aplica na montagem, não ao refocar a página',()=>{
+ const mount=app.logic.events['atalho.mount'];
+ assert.deepEqual(mount.triggeredFlows,['atalho.apply']);
+ assert.equal(mount.eventSource,'page:2:onPageDidMount');
+ assert(app.screens['page.Page2'].events.onPageDidMount.some(e=>e.id==='atalho.mount'));
+ assert(!app.screens['page.Page2'].events.onPageDidFocus.some(e=>e.id==='atalho.mount'));
+});
+test('O botão ★ guarda o atalho com os campos do formulário',()=>{
+ const btn=Object.values(app.components).find(c=>c.pageId==='page.Page2'&&c.props.label==='★ Guardar como atalho');
+ assert(btn,'botão ★ ausente');
+ assert.equal(btn.props.events.tap[0].id,'atalho.saveTap');
+ assert.deepEqual(app.logic.events['atalho.saveTap'].triggeredFlows,['atalho.save']);
+ const r=run('atalho.save',{pageVars:expenseVars});
+ assert.equal(r.requests.length,1);
+ assert.equal(r.requests[0].url,'https://api.steinhq.com/v1/storages/66fe6b324d11fd04f0335b3a/atalhos');
+ const b=r.requests[0].body[0];
+ assert.equal(b.nome,'Teste');
+ assert.equal(b.valor,12.5);
+ assert.equal(b.movimento,'Saída');
+ assert.equal(b.categoria,'Transferência');
+ assert.equal(b.conta,'Ana');
+ assert(r.alerts.some(a=>/guardado/i.test(a)),'alerta de sucesso em falta');
+});
+test('Sem descrição ou valor o atalho não é gravado',()=>{
+ const r=run('atalho.save',{pageVars:{...expenseVars,descricaodespesa:''}});
+ assert.equal(r.requests.length,0);
+ assert(r.alerts.some(a=>/descrição/i.test(a)));
+ const r2=run('atalho.save',{pageVars:{...expenseVars,valordespesa:''}});
+ assert.equal(r2.requests.length,0);
+});
+test('Falha gravação de atalho mostra alerta e não navega',()=>{
+ const r=run('atalho.save',{pageVars:expenseVars,failAt:'atalho.post',failure:'bad'});
+ assert.equal(r.requests.length,1);
+ assert(r.alerts.some(a=>/Verifica a ligação/i.test(a)));
+ assert.equal(r.navigated,false);
+});
+test('Célula vazia de atalho mantém o valor por omissão do formulário',()=>{
+ const r=run('atalho.apply',{params:{usaratalho:'1'}});
+ assert.equal(r.pageVars.cu,0);
+ assert.equal(r.pageVars.valordespesa,null);
 });
 console.log(`\n${checks} checks passed. No live writes were made.`);

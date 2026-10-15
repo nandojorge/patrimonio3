@@ -407,7 +407,21 @@
    "title": "1.1 nova despesa",
    "disableSafeArea": false,
    "scrollDisabled": false,
-   "parameters": {},
+   "parameters": {
+    "usaratalho": null,
+    "atalhonome": null,
+    "valordespesa": null,
+    "entradasaida": null,
+    "vivuspessoal": null,
+    "categoriadespesa": null,
+    "despesafixa": null,
+    "descricaodespesa": null,
+    "conta": null,
+    "contacontabilidade": null,
+    "percentagemarepor": null,
+    "valorarepor": null,
+    "cu": null
+   },
    "pageVariables": {
     "entradasaida": "",
     "vivuspessoal": "",
@@ -454,6 +468,9 @@
      },
      {
       "id": "3fb8d53.0ab24fa"
+     },
+     {
+      "id": "atalho.mount"
      }
     ],
     "datadespesa:onChange": [
@@ -1404,6 +1421,9 @@
       {
        "id": "5552404c-4007-4f88-99b3-8785c77316cb",
        "ch": [
+        {
+         "id": "b001a05f-ff31-b564-4dcd-f7bf074637f6"
+        },
         {
          "id": "bca11f6d-2255-4d55-9eac-4da768e41314"
         },
@@ -62319,6 +62339,117 @@
    "pluginComponentId": "appgyver.primitives:primitive:text",
    "reactClass": "Text",
    "pageId": "page.Page12"
+  },
+  "b001a05f-ff31-b564-4dcd-f7bf074637f6": {
+   "id": "b001a05f-ff31-b564-4dcd-f7bf074637f6",
+   "props": {
+    "contextPropTypes": [
+     "visible",
+     "data",
+     "styles",
+     "animationsConfig",
+     "label",
+     "disabled"
+    ],
+    "label": "★ Guardar como atalho",
+    "visible": true,
+    "disabled": false,
+    "bindings": [
+     {
+      "type": "expression",
+      "sourceId": "9eab90ae-babd-528f-3210-8cb75162ca11",
+      "targetProp": "visible"
+     }
+    ],
+    "stylesBindings": [
+     {
+      "type": "expression",
+      "sourceId": "9db5651e-9704-5005-aad8-b2e0e76255bc",
+      "targetProp": "button.minWidth"
+     },
+     {
+      "type": "expression",
+      "sourceId": "4c6945da-c7cc-5378-a350-f86723d23cea",
+      "targetProp": "button.marginBottom"
+     }
+    ],
+    "flowGroupId": "page:2:component:b001a05f-ff31-b564-4dcd-f7bf074637f6",
+    "styles": {
+     "button": {
+      "alignItems": "center",
+      "justifyContent": "center",
+      "backgroundColor": "#5a5a5a",
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 8,
+      "paddingBottom": 8,
+      "display": "flex",
+      "backfaceVisibility": "visible",
+      "position": "relative",
+      "borderColor": "#ffffff",
+      "shadowColor": "rgba(0,0,0,0.25)",
+      "borderRadius": 4,
+      "shadowRadius": 5,
+      "borderTopWidth": 0,
+      "borderLeftWidth": 0,
+      "borderRightWidth": 0,
+      "borderBottomWidth": 0,
+      "shadowOffset": {
+       "width": 0,
+       "height": 2
+      },
+      "shadowOpacity": 0,
+      "borderTopLeftRadius": 30,
+      "borderTopRightRadius": 30,
+      "borderBottomLeftRadius": 30,
+      "borderBottomRightRadius": 30,
+      "alignSelf": "center",
+      "minHeight": 44,
+      "marginTop": 0,
+      "borderWidth": 0
+     },
+     "text": {
+      "color": "#ffffff",
+      "fontSize": 20,
+      "textAlign": "center",
+      "fontFamily": "Archivo Narrow",
+      "fontWeight": "400",
+      "lineHeight": 28,
+      "textDecorationStyle": "double",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "textDecorationLine": "none",
+      "letterSpacing": 0,
+      "textDecorationColor": "#bb0000",
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     }
+    },
+    "dynamicProps": [
+     "visible"
+    ],
+    "expressionProps": [
+     "visible"
+    ],
+    "events": {
+     "tap": [
+      {
+       "id": "atalho.saveTap"
+      }
+     ],
+     "onPress": [
+      {
+       "id": "atalho.saveTap"
+      }
+     ]
+    }
+   },
+   "pluginComponentId": "appgyver.primitives:primitive:button",
+   "reactClass": "Button",
+   "pageId": "page.Page2"
   }
  },
  "expressions": {
@@ -64552,6 +64683,26 @@
    ],
    "functions": [
     "COUNT"
+   ]
+  },
+  "9eab90ae-babd-528f-3210-8cb75162ca11": {
+   "id": "9eab90ae-babd-528f-3210-8cb75162ca11",
+   "type": "expression",
+   "formula": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))&&!IS_EMPTY(LOOKUP(pageVars,\"valordespesa\"))",
+   "script": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))&&!IS_EMPTY(LOOKUP(pageVars,\"valordespesa\"))",
+   "dependencies": [
+    [
+     "pageVars",
+     "descricaodespesa"
+    ],
+    [
+     "pageVars",
+     "valordespesa"
+    ]
+   ],
+   "functions": [
+    "IS_EMPTY",
+    "LOOKUP"
    ]
   }
  },
@@ -73850,6 +74001,28 @@
     "fallbackName": "Tap",
     "pageId": "page.Page12",
     "contextId": "page:12:component:53671b3e-acd2-d841-03a1-9df9fcff4eec"
+   },
+   "atalho.mount": {
+    "id": "atalho.mount",
+    "name": "",
+    "eventSource": "page:2:onPageDidMount",
+    "triggeredFlows": [
+     "atalho.apply"
+    ],
+    "fallbackName": "Page mounted",
+    "pageId": "page.Page2",
+    "contextId": "page:2"
+   },
+   "atalho.saveTap": {
+    "id": "atalho.saveTap",
+    "name": "",
+    "eventSource": "page:2:component:b001a05f-ff31-b564-4dcd-f7bf074637f6:tap",
+    "triggeredFlows": [
+     "atalho.save"
+    ],
+    "fallbackName": "Tap",
+    "pageId": "page.Page2",
+    "contextId": "page:2:component:b001a05f-ff31-b564-4dcd-f7bf074637f6"
    }
   },
   "flows": {
@@ -126942,6 +127115,873 @@
     "variables": {},
     "pageId": "page.Page12",
     "contextId": "page:12:component:53671b3e-acd2-d841-03a1-9df9fcff4eec"
+   },
+   "atalho.apply": {
+    "title": "atalho.apply",
+    "nodes": {
+     "atalho.guard": {
+      "type": "function",
+      "title": "If condition",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_225eb957.12fbd"
+      },
+      "inputs": {
+       "condition": {
+        "source": "expression",
+        "key": {
+         "script": "IS_EQUAL(LOOKUP(params,\"usaratalho\"),\"1\")",
+         "formula": "IS_EQUAL(LOOKUP(params,\"usaratalho\"),\"1\")",
+         "functions": [
+          "IS_EQUAL",
+          "LOOKUP"
+         ],
+         "dependencies": [
+          [
+           "params",
+           "usaratalho"
+          ]
+         ]
+        }
+       }
+      },
+      "connections": {
+       "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+        {
+         "type": "node",
+         "id": "atalho.v1"
+        }
+       ],
+       "871f4881-b57c-41d5-9934-a69367733066": [
+        {
+         "type": "output",
+         "id": "atalho.apply-success-output"
+        }
+       ]
+      }
+     },
+     "atalho.v1": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"valordespesa\")),LOOKUP(pageVars,\"valordespesa\"),LOOKUP(params,\"valordespesa\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"valordespesa\")),LOOKUP(pageVars,\"valordespesa\"),LOOKUP(params,\"valordespesa\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "valordespesa"
+            ],
+            [
+             "pageVars",
+             "valordespesa"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "valordespesa"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v2"
+        }
+       ]
+      }
+     },
+     "atalho.v2": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"entradasaida\")),LOOKUP(pageVars,\"entradasaida\"),LOOKUP(params,\"entradasaida\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"entradasaida\")),LOOKUP(pageVars,\"entradasaida\"),LOOKUP(params,\"entradasaida\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "entradasaida"
+            ],
+            [
+             "pageVars",
+             "entradasaida"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "entradasaida"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v3"
+        }
+       ]
+      }
+     },
+     "atalho.v3": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"vivuspessoal\")),LOOKUP(pageVars,\"vivuspessoal\"),LOOKUP(params,\"vivuspessoal\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"vivuspessoal\")),LOOKUP(pageVars,\"vivuspessoal\"),LOOKUP(params,\"vivuspessoal\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "vivuspessoal"
+            ],
+            [
+             "pageVars",
+             "vivuspessoal"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "vivuspessoal"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v4"
+        }
+       ]
+      }
+     },
+     "atalho.v4": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"categoriadespesa\")),LOOKUP(pageVars,\"categoriadespesa\"),LOOKUP(params,\"categoriadespesa\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"categoriadespesa\")),LOOKUP(pageVars,\"categoriadespesa\"),LOOKUP(params,\"categoriadespesa\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "categoriadespesa"
+            ],
+            [
+             "pageVars",
+             "categoriadespesa"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "categoriadespesa"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v5"
+        }
+       ]
+      }
+     },
+     "atalho.v5": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"despesafixa\")),LOOKUP(pageVars,\"despesafixa\"),LOOKUP(params,\"despesafixa\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"despesafixa\")),LOOKUP(pageVars,\"despesafixa\"),LOOKUP(params,\"despesafixa\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "despesafixa"
+            ],
+            [
+             "pageVars",
+             "despesafixa"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "despesafixa"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v6"
+        }
+       ]
+      }
+     },
+     "atalho.v6": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"descricaodespesa\")),LOOKUP(pageVars,\"descricaodespesa\"),LOOKUP(params,\"descricaodespesa\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"descricaodespesa\")),LOOKUP(pageVars,\"descricaodespesa\"),LOOKUP(params,\"descricaodespesa\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "descricaodespesa"
+            ],
+            [
+             "pageVars",
+             "descricaodespesa"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "descricaodespesa"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v7"
+        }
+       ]
+      }
+     },
+     "atalho.v7": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"conta\")),LOOKUP(pageVars,\"conta\"),LOOKUP(params,\"conta\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"conta\")),LOOKUP(pageVars,\"conta\"),LOOKUP(params,\"conta\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "conta"
+            ],
+            [
+             "pageVars",
+             "conta"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "conta"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v8"
+        }
+       ]
+      }
+     },
+     "atalho.v8": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"contacontabilidade\")),LOOKUP(pageVars,\"contacontabilidade\"),LOOKUP(params,\"contacontabilidade\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"contacontabilidade\")),LOOKUP(pageVars,\"contacontabilidade\"),LOOKUP(params,\"contacontabilidade\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "contacontabilidade"
+            ],
+            [
+             "pageVars",
+             "contacontabilidade"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "contacontabilidade"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v9"
+        }
+       ]
+      }
+     },
+     "atalho.v9": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"percentagemarepor\")),LOOKUP(pageVars,\"percentagemarepor\"),LOOKUP(params,\"percentagemarepor\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"percentagemarepor\")),LOOKUP(pageVars,\"percentagemarepor\"),LOOKUP(params,\"percentagemarepor\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "percentagemarepor"
+            ],
+            [
+             "pageVars",
+             "percentagemarepor"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "percentagemarepor"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v10"
+        }
+       ]
+      }
+     },
+     "atalho.v10": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"valorarepor\")),LOOKUP(pageVars,\"valorarepor\"),LOOKUP(params,\"valorarepor\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"valorarepor\")),LOOKUP(pageVars,\"valorarepor\"),LOOKUP(params,\"valorarepor\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "valorarepor"
+            ],
+            [
+             "pageVars",
+             "valorarepor"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "valorarepor"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v11"
+        }
+       ]
+      }
+     },
+     "atalho.v11": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"cu\")),LOOKUP(pageVars,\"cu\"),LOOKUP(params,\"cu\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"cu\")),LOOKUP(pageVars,\"cu\"),LOOKUP(params,\"cu\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "cu"
+            ],
+            [
+             "pageVars",
+             "cu"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "cu"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "output",
+         "id": "atalho.apply-success-output"
+        }
+       ]
+      }
+     }
+    },
+    "inputs": {
+     "type": "object",
+     "properties": {},
+     "required": []
+    },
+    "outputs": {
+     "atalho.apply-success-output": {
+      "title": "Success",
+      "description": "Flow executed successfully",
+      "kind": "success",
+      "order": 0,
+      "values": {}
+     }
+    },
+    "startConnection": {
+     "type": "node",
+     "id": "atalho.guard"
+    },
+    "variables": {},
+    "pageId": "page.Page2",
+    "contextId": "page:2"
+   },
+   "atalho.save": {
+    "title": "Component tap (Component: ★ Guardar como atalho)",
+    "nodes": {
+     "atalho.saveCheck": {
+      "type": "function",
+      "title": "If condition",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_225eb957.12fbd"
+      },
+      "inputs": {
+       "condition": {
+        "source": "expression",
+        "key": {
+         "script": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))&&!IS_EMPTY(LOOKUP(pageVars,\"valordespesa\"))",
+         "formula": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))&&!IS_EMPTY(LOOKUP(pageVars,\"valordespesa\"))",
+         "functions": [
+          "IS_EMPTY",
+          "LOOKUP"
+         ],
+         "dependencies": [
+          [
+           "pageVars",
+           "descricaodespesa"
+          ],
+          [
+           "pageVars",
+           "valordespesa"
+          ]
+         ]
+        }
+       }
+      },
+      "connections": {
+       "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+        {
+         "type": "node",
+         "id": "atalho.post"
+        }
+       ],
+       "871f4881-b57c-41d5-9934-a69367733066": [
+        {
+         "type": "node",
+         "id": "atalho.alertMissing"
+        }
+       ]
+      }
+     },
+     "atalho.post": {
+      "type": "function",
+      "title": "HTTP request",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_1a22567d.4d69a"
+      },
+      "inputs": {
+       "url": {
+        "key": "https://api.steinhq.com/v1/storages/66fe6b324d11fd04f0335b3a/atalhos",
+        "source": "str"
+       },
+       "method": {
+        "key": "POST",
+        "source": "str"
+       },
+       "headers": {
+        "key": [
+         {
+          "value": "application/json",
+          "header": "Content-Type"
+         }
+        ],
+        "source": [
+         {
+          "value": "str",
+          "header": "str"
+         }
+        ]
+       },
+       "bodyType": {
+        "key": "json",
+        "source": "str"
+       },
+       "body": {
+        "key": {
+         "script": "[{nome:LOOKUP(pageVars,\"descricaodespesa\"),valor:NUMBER(REPLACE_ALL(STRING(LOOKUP(pageVars,\"valordespesa\")),\",\",\".\")),movimento:LOOKUP(pageVars,\"entradasaida\"),vivus_pessoal:LOOKUP(pageVars,\"vivuspessoal\"),categoria:LOOKUP(pageVars,\"categoriadespesa\"),despesas_fixas:LOOKUP(pageVars,\"despesafixa\"),descricao:LOOKUP(pageVars,\"descricaodespesa\"),conta:LOOKUP(pageVars,\"conta\"),classificacao:LOOKUP(pageVars,\"contacontabilidade\"),percentagem:LOOKUP(pageVars,\"percentagemarepor\"),reposicao_valor:LOOKUP(pageVars,\"valorarepor\"),cu:LOOKUP(pageVars,\"cu\")}]",
+         "formula": "[{nome:LOOKUP(pageVars,\"descricaodespesa\"),valor:NUMBER(REPLACE_ALL(STRING(LOOKUP(pageVars,\"valordespesa\")),\",\",\".\")),movimento:LOOKUP(pageVars,\"entradasaida\"),vivus_pessoal:LOOKUP(pageVars,\"vivuspessoal\"),categoria:LOOKUP(pageVars,\"categoriadespesa\"),despesas_fixas:LOOKUP(pageVars,\"despesafixa\"),descricao:LOOKUP(pageVars,\"descricaodespesa\"),conta:LOOKUP(pageVars,\"conta\"),classificacao:LOOKUP(pageVars,\"contacontabilidade\"),percentagem:LOOKUP(pageVars,\"percentagemarepor\"),reposicao_valor:LOOKUP(pageVars,\"valorarepor\"),cu:LOOKUP(pageVars,\"cu\")}]",
+         "functions": [
+          "LOOKUP",
+          "NUMBER",
+          "REPLACE_ALL",
+          "STRING"
+         ],
+         "dependencies": [
+          [
+           "pageVars",
+           "descricaodespesa"
+          ],
+          [
+           "pageVars",
+           "valordespesa"
+          ],
+          [
+           "pageVars",
+           "entradasaida"
+          ],
+          [
+           "pageVars",
+           "vivuspessoal"
+          ],
+          [
+           "pageVars",
+           "categoriadespesa"
+          ],
+          [
+           "pageVars",
+           "despesafixa"
+          ],
+          [
+           "pageVars",
+           "conta"
+          ],
+          [
+           "pageVars",
+           "contacontabilidade"
+          ],
+          [
+           "pageVars",
+           "percentagemarepor"
+          ],
+          [
+           "pageVars",
+           "valorarepor"
+          ],
+          [
+           "pageVars",
+           "cu"
+          ]
+         ]
+        }
+       }
+      },
+      "connections": {
+       "180fc790-08a9-44c1-b7ab-265caf4f13e7": [
+        {
+         "type": "node",
+         "id": "atalho.alertOk"
+        }
+       ],
+       "a4ec0b24-5bf1-40d3-97f0-91689c16c0be": [
+        {
+         "type": "node",
+         "id": "atalho.alertErr"
+        }
+       ],
+       "d0ffa631-53c6-4352-8b33-0db7034ae11f": [
+        {
+         "type": "node",
+         "id": "atalho.alertErr"
+        }
+       ]
+      }
+     },
+     "atalho.alertOk": {
+      "type": "function",
+      "title": "Alert",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_bd0c25ba.5aaf3"
+      },
+      "inputs": {
+       "title": {
+        "key": "Atalho guardado",
+        "source": "str"
+       },
+       "message": {
+        "key": "O atalho foi guardado e já está disponível na página Atalhos.",
+        "source": "str"
+       },
+       "dismissLabel": {
+        "key": "OK",
+        "source": "str"
+       }
+      },
+      "connections": {}
+     },
+     "atalho.alertMissing": {
+      "type": "function",
+      "title": "Alert",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_bd0c25ba.5aaf3"
+      },
+      "inputs": {
+       "title": {
+        "key": "Faltam dados",
+        "source": "str"
+       },
+       "message": {
+        "key": "Preenche a descrição e o valor para guardar o atalho.",
+        "source": "str"
+       },
+       "dismissLabel": {
+        "key": "OK",
+        "source": "str"
+       }
+      },
+      "connections": {}
+     },
+     "atalho.alertErr": {
+      "type": "function",
+      "title": "Alert",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_bd0c25ba.5aaf3"
+      },
+      "inputs": {
+       "title": {
+        "key": "Não foi possível guardar",
+        "source": "str"
+       },
+       "message": {
+        "key": "Verifica a ligação com a folha e tenta novamente.",
+        "source": "str"
+       },
+       "dismissLabel": {
+        "key": "OK",
+        "source": "str"
+       }
+      },
+      "connections": {}
+     }
+    },
+    "inputs": {
+     "type": "object",
+     "properties": {},
+     "required": []
+    },
+    "outputs": {
+     "atalho.save-success-output": {
+      "title": "Success",
+      "description": "Flow executed successfully",
+      "kind": "success",
+      "order": 0,
+      "values": {}
+     },
+     "atalho.save-error-output": {
+      "title": "Error",
+      "description": "Flow executed with an error",
+      "kind": "error",
+      "order": 1,
+      "values": {}
+     }
+    },
+    "startConnection": {
+     "type": "node",
+     "id": "atalho.saveCheck"
+    },
+    "variables": {},
+    "pageId": "page.Page2",
+    "contextId": "page:2:component:b001a05f-ff31-b564-4dcd-f7bf074637f6"
    }
   }
  },
