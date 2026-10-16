@@ -92,7 +92,7 @@ test('Direct links without record IDs cannot update expenses, trips or reimburse
 });
 test('Only audited writes and main data loader changed; other original flows identical',()=>{
  if(!originalRoot)return;const before=read(originalRoot).config;
- for(const [id,f] of Object.entries(before.logic.flows))if(!flows.includes(id)&&!["48b0666.cf70ca2","2f0f0c6b.66e364","4263321b.59d78c"].includes(id))assert.deepEqual(app.logic.flows[id],f,id);
+ for(const [id,f] of Object.entries(before.logic.flows))if(!flows.includes(id)&&!["48b0666.cf70ca2","2f0f0c6b.66e364","4263321b.59d78c","7373435c.faeaec"].includes(id))assert.deepEqual(app.logic.flows[id],f,id);
  for(const [id,event] of Object.entries(before.logic.events))if(!['fd2f8be.9582c15','f573873.113c982','0b140ab.33b6f91'].includes(id))assert.deepEqual(app.logic.events[id],event,id);
 });
 
@@ -173,9 +173,10 @@ test('A estrela ★ no cabeçalho guarda o atalho com os campos do formulário',
  assert(star.props.bindings.some(b=>b.targetProp==='visible'),'visibilidade da estrela em falta');
  assert.equal(app.logic.events['atalho.saveTap'].eventSource,'page:2:component:'+star.id+':tap');
  assert(!Object.values(app.components).some(c=>c.props.label==='★ Guardar como atalho'),'botão grande ainda presente');
- const r=run('atalho.save',{pageVars:expenseVars});
+ const r=run('atalho.save',{pageVars:{...expenseVars,atalhomodo:'1'}});
  assert.equal(r.requests.length,1);
  assert.equal(r.requests[0].url,'https://api.steinhq.com/v1/storages/66fe6b324d11fd04f0335b3a/atalhos');
+ assert.equal(app.logic.flows['atalho.save'].nodes['atalho.post'].inputs.body.source,'expression');
  const b=r.requests[0].body[0];
  assert.equal(b.nome,'Teste');
  assert.equal(b.valor,12.5);
@@ -184,15 +185,17 @@ test('A estrela ★ no cabeçalho guarda o atalho com os campos do formulário',
  assert.equal(b.conta,'Ana');
  assert(r.alerts.some(a=>/guardado/i.test(a)),'alerta de sucesso em falta');
 });
-test('Sem descrição ou valor o atalho não é gravado',()=>{
- const r=run('atalho.save',{pageVars:{...expenseVars,descricaodespesa:''}});
+test('Sem descrição o atalho não é gravado; valor vazio é permitido',()=>{
+ const r=run('atalho.save',{pageVars:{...expenseVars,atalhomodo:'1',descricaodespesa:''}});
  assert.equal(r.requests.length,0);
  assert(r.alerts.some(a=>/descrição/i.test(a)));
- const r2=run('atalho.save',{pageVars:{...expenseVars,valordespesa:''}});
- assert.equal(r2.requests.length,0);
+ const r2=run('atalho.save',{pageVars:{...expenseVars,atalhomodo:'1',valordespesa:''}});
+ assert.equal(r2.requests.length,1);
+ assert.equal(r2.requests[0].body[0].valor,'');
+ assert(r2.alerts.some(a=>/guardado/i.test(a)));
 });
 test('Falha gravação de atalho mostra alerta e não navega',()=>{
- const r=run('atalho.save',{pageVars:expenseVars,failAt:'atalho.post',failure:'bad'});
+ const r=run('atalho.save',{pageVars:{...expenseVars,atalhomodo:'1'},failAt:'atalho.post',failure:'bad'});
  assert.equal(r.requests.length,1);
  assert(r.alerts.some(a=>/Verifica a ligação/i.test(a)));
  assert.equal(r.navigated,false);
@@ -201,5 +204,96 @@ test('Célula vazia de atalho mantém o valor por omissão do formulário',()=>{
  const r=run('atalho.apply',{params:{usaratalho:'1'}});
  assert.equal(r.pageVars.cu,0);
  assert.equal(r.pageVars.valordespesa,null);
+});
+test('★ abre o campo de nome antes de gravar e sugere a descrição',()=>{
+ const r=run('atalho.save',{pageVars:{...expenseVars,atalhomodo:''}});
+ assert.equal(r.requests.length,0);
+ assert.equal(r.pageVars.atalhomodo,'1');
+ assert.equal(r.pageVars.atalhonome,'Teste');
+});
+test('O nome escrito no campo de nome é o nome do atalho guardado',()=>{
+ const r=run('atalho.save',{pageVars:{...expenseVars,atalhomodo:'1',atalhonome:'Gasolina trabalho'}});
+ assert.equal(r.requests.length,1);
+ assert.equal(r.requests[0].body[0].nome,'Gasolina trabalho');
+ assert(r.alerts.some(a=>/guardado/i.test(a)));
+});
+test('Cancelar (✕) limpa o modo de nome e o nome sem gravar nada',()=>{
+ const r=run('atalho.cancel',{pageVars:{...expenseVars,atalhomodo:'1',atalhonome:'X'}});
+ assert.equal(r.requests.length,0);
+ assert.equal(r.pageVars.atalhomodo,'');
+ assert.equal(r.pageVars.atalhonome,'');
+});
+test('O painel do nome existe no Page2, liga a pageVariable e cancela com ✕',()=>{
+ const vis=Object.values(app.expressions).find(e=>e.script.includes('atalhomodo'));
+ assert(vis,'expressão de visibilidade do painel em falta');
+ const panel=Object.values(app.components).find(c=>(c.props.bindings||[]).some(b=>b.type==='expression'&&b.sourceId===vis.id&&b.targetProp==='visible'));
+ assert(panel,'painel do nome em falta');
+ const root=app.screens['page.Page2'].components[0];
+ assert(root.ch.some(n=>n.id===panel.id),'painel fora da árvore');
+ const nameLabel=Object.values(app.components).find(c=>c.props.label==='Nome do atalho');
+ assert(nameLabel,'campo de nome em falta');
+ assert(nameLabel.props.bindings.some(b=>b.type==='page-variable'&&b.sourceId==='atalhonome'),'campo de nome sem ligação a atalhonome');
+ const cancel=Object.values(app.components).find(c=>c.props.content==='✕');
+ assert(cancel,'✕ em falta');
+ assert.equal(cancel.props.events.tap[0].id,'atalho.cancelTap');
+ assert.deepEqual(app.logic.events['atalho.cancelTap'].triggeredFlows,['atalho.cancel']);
+});
+test('Abrir um atalho assume a data de hoje e mantém o nome original',()=>{
+ const r=run('atalho.apply',{params:{usaratalho:'1',atalhonome:'Gasolina',datadespesa:'2020-01-01'}});
+ assert.notEqual(r.pageVars.datadespesa,'2020-01-01');
+ assert.equal(app.logic.flows['atalho.apply'].nodes['atalho.today'].inputs.variable.key.value.key.script,'NOW("YYYY-MM-DD")');
+ assert.equal(r.pageVars.atalhonome,'Gasolina');
+});
+test('A montagem/foco limpa o botão Submeter e o modo de nome',()=>{
+ const r=run('7373435c.faeaec',{pageVars:{botaosubmeterdespesa:'1',atalhomodo:'1'}});
+ assert.equal(r.pageVars.botaosubmeterdespesa,'');
+ assert.equal(r.pageVars.atalhomodo,'');
+});
+test('Leitura de ids usa export CSV da coluna T com cache-buster',()=>{
+ const csv=app.dataResources.despesasidscsv;
+ assert(csv,'recurso despesasidscsv em falta');
+ assert.equal(csv.driverConfiguration.base.baseURL.source,'expression');
+ assert(csv.driverConfiguration.base.baseURL.key.script.includes('range=T:T'));
+ assert(csv.driverConfiguration.base.baseURL.key.script.includes('_fresh'));
+ const url=evaluate(csv.driverConfiguration.base.baseURL.key.script,{NOW:()=> '2026-10-09T00:00:00Z'});
+ assert(url.startsWith('https://docs.google.com/spreadsheets/'),'URL de ids inválida: '+url);
+ assert(url.includes('range=T:T&_fresh='),'cache-buster do CSV de ids em falta: '+url);
+ let uses=0;
+ for(const f of Object.values(app.logic.flows))for(const n of Object.values(f.nodes||{}))if(n.title==='Get record collection'&&n.inputs.request.key.resourceName.key==='despesasidscsv')uses++;
+ assert.equal(uses,6);
+ for(const fid of ['f990588c.3257d8','80c0e322.fee95','f325090b.4931b8']){
+  const f=app.logic.flows[fid];
+  assert.equal(f.nodes['audit.readIDs'].inputs.request.key.resourceName.key,'despesasidscsv');
+  assert.equal(f.nodes['audit.recheck.'+fid].inputs.request.key.resourceName.key,'despesasidscsv');
+  assert.equal(f.nodes['performance.fallback'].inputs.request.key.resourceName.key,'despesasids');
+ }
+});
+test('O mapper do CSV de ids valida o cabeçalho e devolve os identificadores',()=>{
+ const script=app.dataResources.despesasidscsv.driverConfiguration.operations.list.responseMapper.key.script;
+ const recs=evaluate(script,{response:{data:'id_despesa\r\n1\r\n8251\r\n',status:200}});
+ assert.equal(recs.records.length,2);
+ assert.equal(recs.records[0].id_despesa,'1');
+ assert.equal(recs.records[1].id_despesa,'8251');
+ assert.equal(recs.driverCode,200);
+ assert.throws(()=>evaluate(script,{response:{data:'outra_coluna\r\n1\r\n',status:200}}));
+});
+test('Versão publicada 3.0.11 para cache-bust dos bundles',()=>{
+ assert.equal(JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version,'3.0.11');
+});
+test('Nenhum nó de fluxo usa ref forjada (o runtime ignora-as em silêncio)',()=>{
+ const canon={};
+ const src=originalRoot?read(originalRoot).config:app;
+ for(const f of Object.values(src.logic.flows))
+  for(const n of Object.values(f.nodes||{}))
+   if(n.ref)(canon[n.title]=canon[n.title]||new Set()).add(n.ref.id);
+ let total=0;
+ for(const [fid,f] of Object.entries(app.logic.flows))
+  for(const [nid,n] of Object.entries(f.nodes||{})){
+   if(!n.ref)continue;
+   total++;
+   const c=canon[n.title];
+   if(c)assert(c.has(n.ref.id),fid+'/'+nid+' ('+n.title+') tem ref forjada '+n.ref.id);
+  }
+ assert(total>100,'varredura de refs incompleta');
 });
 console.log(`\n${checks} checks passed. No live writes were made.`);

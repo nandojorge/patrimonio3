@@ -400,6 +400,14 @@
      "viewed_date",
      "days_in_month",
      "weekday_of_last_day_of_month"
+    ],
+    "6f1a08b8-cee4-a85b-eaf6-87fc027c2164": [
+     "label",
+     "keyboardType",
+     "disabled",
+     "multlineInput",
+     "autoCapitalize",
+     "passwordInput"
     ]
    },
    "pageFlowId": "page:2",
@@ -438,7 +446,9 @@
     "botaosubmeterdespesa": "",
     "cu": 0,
     "contadestino": "",
-    "iddespesa": 0
+    "iddespesa": 0,
+    "atalhonome": "",
+    "atalhomodo": ""
    },
    "dataReferences": {
     "listasStein1": [],
@@ -519,6 +529,25 @@
            "id": "25c8f442-1a39-ef84-6a4f-3387f5af4916"
           }
          ]
+        }
+       ]
+      },
+      {
+       "id": "64424eed-c034-f5bb-31df-bc58d107cd9c",
+       "ch": [
+        {
+         "id": "6f1a08b8-cee4-a85b-eaf6-87fc027c2164",
+         "ch": [
+          {
+           "id": "a63a9729-021a-5c7c-1ba0-910158dfbb9c"
+          },
+          {
+           "id": "141a7eae-f7e1-7e12-7ed0-193dac255fb2"
+          }
+         ]
+        },
+        {
+         "id": "61277849-2114-4faf-a985-ea571040b29c"
         }
        ]
       },
@@ -62420,6 +62449,473 @@
    "pluginComponentId": "appgyver.primitives:primitive:text",
    "reactClass": "Text",
    "pageId": "page.Page2"
+  },
+  "64424eed-c034-f5bb-31df-bc58d107cd9c": {
+   "id": "64424eed-c034-f5bb-31df-bc58d107cd9c",
+   "props": {
+    "contextPropTypes": [
+     "visible",
+     "data",
+     "styles",
+     "animationsConfig",
+     "backgroundImage"
+    ],
+    "visible": true,
+    "backgroundImage": "",
+    "stylesBindings": [
+     {
+      "type": "expression",
+      "sourceId": "9db5651e-9704-5005-aad8-b2e0e76255bc",
+      "targetProp": "holder.minWidth"
+     }
+    ],
+    "flowGroupId": "page:2:component:64424eed-c034-f5bb-31df-bc58d107cd9c",
+    "styles": {
+     "holder": {
+      "flexWrap": "nowrap",
+      "alignItems": "flex-start",
+      "backfaceVisibility": "visible",
+      "opacity": 1,
+      "overflow": "hidden",
+      "position": "relative",
+      "alignSelf": "center",
+      "alignContent": "flex-start",
+      "flexDirection": "column",
+      "justifyContent": "center",
+      "minHeight": 80,
+      "borderRadius": 4,
+      "backgroundColor": "#ffffff",
+      "borderTopLeftRadius": 30,
+      "borderTopRightRadius": 30,
+      "borderBottomLeftRadius": 30,
+      "borderBottomRightRadius": 30,
+      "marginTop": 0,
+      "marginBottom": 12,
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     },
+     "backgroundImage": {
+      "resizeMode": "cover",
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     }
+    },
+    "dynamicProps": [],
+    "expressionProps": [
+     "visible"
+    ],
+    "events": {},
+    "bindings": [
+     {
+      "type": "expression",
+      "sourceId": "0ecdc962-5de5-2fd0-823a-c1cc2ac71afb",
+      "targetProp": "visible"
+     }
+    ]
+   },
+   "pluginComponentId": "appgyver.primitives:primitive:view",
+   "reactClass": "FlexBoxLayout",
+   "pageId": "page.Page2"
+  },
+  "6f1a08b8-cee4-a85b-eaf6-87fc027c2164": {
+   "isComposite": true,
+   "id": "6f1a08b8-cee4-a85b-eaf6-87fc027c2164",
+   "props": {
+    "contextPropTypes": [
+     "visible",
+     "data",
+     "styles",
+     "animationsConfig",
+     "label",
+     "value",
+     "placeholder",
+     "autoCapitalize",
+     "disabled",
+     "keyboardType",
+     "multlineInput",
+     "passwordInput"
+    ],
+    "label": "Nome do atalho",
+    "value": "Lorem ipsum",
+    "placeholder": "Ex.: Gasolina",
+    "autoCapitalize": "none",
+    "disabled": false,
+    "keyboardType": "default",
+    "multlineInput": false,
+    "passwordInput": false,
+    "visible": true,
+    "bindings": [
+     {
+      "type": "page-variable",
+      "sourceId": "atalhonome",
+      "sourceProp": "",
+      "targetProp": "value"
+     }
+    ],
+    "flowGroupId": "page:2:component:6f1a08b8-cee4-a85b-eaf6-87fc027c2164",
+    "styles": {
+     "holder": {
+      "flexWrap": "nowrap",
+      "overflow": "hidden",
+      "alignItems": "flex-start",
+      "backfaceVisibility": "visible",
+      "opacity": 1,
+      "position": "relative",
+      "alignSelf": "stretch",
+      "alignContent": "flex-start",
+      "flexDirection": "column",
+      "justifyContent": "center",
+      "marginLeft": 18,
+      "marginRight": 16,
+      "paddingTop": 0,
+      "borderColor": "#89919a",
+      "borderWidth": 0,
+      "paddingLeft": 0,
+      "shadowColor": "rgba(0,0,0,0.15)",
+      "borderRadius": 2,
+      "paddingRight": 0,
+      "shadowRadius": 5,
+      "paddingBottom": 0,
+      "borderTopWidth": 0,
+      "backgroundColor": "transparent",
+      "borderLeftWidth": 0,
+      "borderRightWidth": 0,
+      "borderBottomWidth": 0,
+      "shadowOffset": {
+       "width": 0,
+       "height": 2
+      },
+      "shadowOpacity": 0,
+      "borderTopLeftRadius": 2,
+      "borderTopRightRadius": 2,
+      "borderBottomLeftRadius": 2,
+      "borderBottomRightRadius": 2,
+      "flexGrow": 0,
+      "flexShrink": 0,
+      "flexBasis": "auto",
+      "marginTop": 0,
+      "marginBottom": 0
+     },
+     "backgroundImage": {
+      "resizeMode": "cover",
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     }
+    },
+    "dynamicProps": [
+     "value"
+    ],
+    "expressionProps": [],
+    "events": {}
+   },
+   "pluginComponentId": "appgyver.primitives:primitive:view",
+   "reactClass": "FlexBoxLayout",
+   "pageId": "page.Page2"
+  },
+  "a63a9729-021a-5c7c-1ba0-910158dfbb9c": {
+   "id": "a63a9729-021a-5c7c-1ba0-910158dfbb9c",
+   "props": {
+    "contextPropTypes": [
+     "visible",
+     "data",
+     "styles",
+     "animationsConfig",
+     "content",
+     "numberOfLines",
+     "selectable"
+    ],
+    "content": "Lorem ipsum dolor sit amet",
+    "visible": true,
+    "numberOfLines": 0,
+    "selectable": false,
+    "bindings": [
+     {
+      "type": "internal-property",
+      "sourceId": "6f1a08b8-cee4-a85b-eaf6-87fc027c2164:label",
+      "sourceProp": "",
+      "targetProp": "content"
+     }
+    ],
+    "flowGroupId": "page:2:component:a63a9729-021a-5c7c-1ba0-910158dfbb9c",
+    "styles": {
+     "text": {
+      "color": "#89919a",
+      "fontSize": 14,
+      "fontFamily": "Archivo Narrow",
+      "fontWeight": "400",
+      "lineHeight": 20,
+      "textDecorationColor": "#6a6d70",
+      "textDecorationStyle": "solid",
+      "fontStyle": "normal",
+      "textAlign": "left",
+      "letterSpacing": 0,
+      "textTransform": "none",
+      "textDecorationLine": "none",
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     },
+     "view": {
+      "backfaceVisibility": "visible",
+      "opacity": 1,
+      "overflow": "hidden",
+      "position": "relative",
+      "alignSelf": "stretch",
+      "borderTopEndRadius": 0,
+      "borderTopStartRadius": 0,
+      "flexGrow": 0,
+      "flexShrink": 0,
+      "flexBasis": "auto",
+      "marginTop": 0,
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     }
+    },
+    "dynamicProps": [
+     "content"
+    ],
+    "expressionProps": [],
+    "events": {}
+   },
+   "pluginComponentId": "appgyver.primitives:primitive:text",
+   "reactClass": "Text",
+   "pageId": "page.Page2",
+   "rcid": "38e24be0-5a9a-43cb-a20a-adccc97d3fad"
+  },
+  "141a7eae-f7e1-7e12-7ed0-193dac255fb2": {
+   "id": "141a7eae-f7e1-7e12-7ed0-193dac255fb2",
+   "props": {
+    "contextPropTypes": [
+     "visible",
+     "data",
+     "styles",
+     "animationsConfig",
+     "value",
+     "placeholder",
+     "keyboardType",
+     "disabled",
+     "multiline",
+     "autoCapitalize",
+     "secureTextEntry"
+    ],
+    "value": "",
+    "placeholder": "Ex.: Gasolina",
+    "visible": true,
+    "keyboardType": "default",
+    "disabled": false,
+    "multiline": false,
+    "autoCapitalize": "none",
+    "secureTextEntry": false,
+    "bindings": [
+     {
+      "type": "page-variable",
+      "sourceId": "atalhonome",
+      "sourceProp": "",
+      "targetProp": "value"
+     },
+     {
+      "type": "internal-property",
+      "sourceId": "6f1a08b8-cee4-a85b-eaf6-87fc027c2164:keyboardType",
+      "sourceProp": "",
+      "targetProp": "keyboardType"
+     },
+     {
+      "type": "internal-property",
+      "sourceId": "6f1a08b8-cee4-a85b-eaf6-87fc027c2164:disabled",
+      "sourceProp": "",
+      "targetProp": "disabled"
+     },
+     {
+      "type": "internal-property",
+      "sourceId": "6f1a08b8-cee4-a85b-eaf6-87fc027c2164:multlineInput",
+      "sourceProp": "",
+      "targetProp": "multiline"
+     },
+     {
+      "type": "internal-property",
+      "sourceId": "6f1a08b8-cee4-a85b-eaf6-87fc027c2164:autoCapitalize",
+      "sourceProp": "",
+      "targetProp": "autoCapitalize"
+     },
+     {
+      "type": "internal-property",
+      "sourceId": "6f1a08b8-cee4-a85b-eaf6-87fc027c2164:passwordInput",
+      "sourceProp": "",
+      "targetProp": "secureTextEntry"
+     }
+    ],
+    "flowGroupId": "page:2:component:141a7eae-f7e1-7e12-7ed0-193dac255fb2",
+    "styles": {
+     "holder": {
+      "width": "100%",
+      "alignSelf": "stretch",
+      "backgroundColor": "transparent",
+      "borderColor": "#89919a",
+      "shadowColor": "rgba(0,0,0,0.25)",
+      "paddingLeft": 9,
+      "paddingRight": 9,
+      "paddingTop": 7,
+      "paddingBottom": 7,
+      "borderTopWidth": 0,
+      "borderLeftWidth": 0,
+      "borderRightWidth": 0,
+      "borderBottomWidth": 0,
+      "backfaceVisibility": "visible",
+      "opacity": 1,
+      "borderRadius": 2,
+      "shadowRadius": 5,
+      "shadowOffset": {
+       "width": 0,
+       "height": 2
+      },
+      "shadowOpacity": 0,
+      "borderTopLeftRadius": 2,
+      "borderTopRightRadius": 2,
+      "borderBottomLeftRadius": 2,
+      "borderBottomRightRadius": 2,
+      "bottom": 8,
+      "flexGrow": 0,
+      "flexShrink": 0,
+      "flexBasis": "auto",
+      "marginTop": 0,
+      "marginBottom": 0,
+      "borderWidth": 0
+     },
+     "text": {
+      "color": "#32363a",
+      "fontFamily": "Archivo Narrow",
+      "fontWeight": "400",
+      "fontSize": 18,
+      "lineHeight": 25,
+      "fontStyle": "normal",
+      "textAlign": "left",
+      "textTransform": "none",
+      "letterSpacing": 0,
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     },
+     "textSupplemental": {
+      "inactiveColor": "#74777a",
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     },
+     "input": {
+      "selectionColor": "#B4D5FE",
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     }
+    },
+    "dynamicProps": [
+     "value",
+     "keyboardType",
+     "disabled",
+     "multiline",
+     "autoCapitalize",
+     "secureTextEntry"
+    ],
+    "expressionProps": [],
+    "events": {}
+   },
+   "pluginComponentId": "appgyver.primitives:primitive:input",
+   "reactClass": "Input",
+   "pageId": "page.Page2",
+   "rcid": "38e24be0-5a9a-43cb-a20a-adccc97d3fad"
+  },
+  "61277849-2114-4faf-a985-ea571040b29c": {
+   "id": "61277849-2114-4faf-a985-ea571040b29c",
+   "props": {
+    "contextPropTypes": [
+     "visible",
+     "data",
+     "styles",
+     "animationsConfig",
+     "content"
+    ],
+    "content": "✕",
+    "visible": true,
+    "flowGroupId": "page:2:component:61277849-2114-4faf-a985-ea571040b29c",
+    "styles": {
+     "text": {
+      "color": "#89919a",
+      "fontSize": 20,
+      "fontFamily": "Archivo Narrow",
+      "fontWeight": "700",
+      "lineHeight": 30,
+      "textDecorationColor": "#32363a",
+      "textDecorationStyle": "solid",
+      "fontStyle": "normal",
+      "textAlign": "left",
+      "letterSpacing": 0,
+      "textTransform": "none",
+      "textDecorationLine": "none",
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     },
+     "view": {
+      "overflow": "visible",
+      "backfaceVisibility": "visible",
+      "opacity": 1,
+      "position": "relative",
+      "alignSelf": "center",
+      "flexGrow": 0,
+      "flexShrink": 0,
+      "flexBasis": "auto",
+      "marginTop": 0,
+      "marginBottom": -2,
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0,
+      "paddingRight": 12,
+      "paddingLeft": 12
+     }
+    },
+    "dynamicProps": [],
+    "expressionProps": [],
+    "events": {
+     "tap": [
+      {
+       "id": "atalho.cancelTap"
+      }
+     ],
+     "onPress": [
+      {
+       "id": "atalho.cancelTap"
+      }
+     ]
+    },
+    "bindings": []
+   },
+   "pluginComponentId": "appgyver.primitives:primitive:text",
+   "reactClass": "Text",
+   "pageId": "page.Page2"
   }
  },
  "expressions": {
@@ -64658,20 +65154,32 @@
   "9eab90ae-babd-528f-3210-8cb75162ca11": {
    "id": "9eab90ae-babd-528f-3210-8cb75162ca11",
    "type": "expression",
-   "formula": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))&&!IS_EMPTY(LOOKUP(pageVars,\"valordespesa\"))",
-   "script": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))&&!IS_EMPTY(LOOKUP(pageVars,\"valordespesa\"))",
+   "formula": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))",
+   "script": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))",
    "dependencies": [
     [
      "pageVars",
      "descricaodespesa"
-    ],
-    [
-     "pageVars",
-     "valordespesa"
     ]
    ],
    "functions": [
     "IS_EMPTY",
+    "LOOKUP"
+   ]
+  },
+  "0ecdc962-5de5-2fd0-823a-c1cc2ac71afb": {
+   "id": "0ecdc962-5de5-2fd0-823a-c1cc2ac71afb",
+   "type": "expression",
+   "formula": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"1\")",
+   "script": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"1\")",
+   "dependencies": [
+    [
+     "pageVars",
+     "atalhomodo"
+    ]
+   ],
+   "functions": [
+    "IS_EQUAL",
     "LOOKUP"
    ]
   }
@@ -73993,6 +74501,17 @@
     "fallbackName": "Tap",
     "pageId": "page.Page2",
     "contextId": "page:2:component:25c8f442-1a39-ef84-6a4f-3387f5af4916"
+   },
+   "atalho.cancelTap": {
+    "id": "atalho.cancelTap",
+    "name": "",
+    "eventSource": "page:2:component:61277849-2114-4faf-a985-ea571040b29c:tap",
+    "triggeredFlows": [
+     "atalho.cancel"
+    ],
+    "fallbackName": "Tap",
+    "pageId": "page.Page2",
+    "contextId": "page:2:component:61277849-2114-4faf-a985-ea571040b29c"
    }
   },
   "flows": {
@@ -74525,7 +75044,7 @@
         "key": {
          "resourceName": {
           "source": "resource",
-          "key": "despesasidsdiretos"
+          "key": "despesasidscsv"
          }
         },
         "source": "object"
@@ -74646,14 +75165,14 @@
       "title": "Get record collection",
       "ref": {
        "type": "flow-function",
-       "id": "own_recheck.f325090b.4931b8"
+       "id": "own_100f5064.6f140"
       },
       "inputs": {
        "request": {
         "key": {
          "resourceName": {
           "source": "resource",
-          "key": "despesasidsdiretos"
+          "key": "despesasidscsv"
          }
         },
         "source": "object"
@@ -74679,7 +75198,7 @@
       "title": "Set data variable",
       "ref": {
        "type": "flow-function",
-       "id": "own_recheckSet.f325090b.4931b8"
+       "id": "own_105ec0bb.2f7d7"
       },
       "inputs": {
        "assignment": {
@@ -74710,7 +75229,7 @@
       "title": "If condition",
       "ref": {
        "type": "flow-function",
-       "id": "own_compare.f325090b.4931b8"
+       "id": "own_225eb957.12fbd"
       },
       "inputs": {
        "condition": {
@@ -74760,7 +75279,7 @@
       "title": "Alert",
       "ref": {
        "type": "flow-function",
-       "id": "own_staleData"
+       "id": "own_bd0c25ba.5aaf3"
       },
       "inputs": {
        "title": {
@@ -78870,7 +79389,7 @@
         "key": {
          "resourceName": {
           "source": "resource",
-          "key": "despesasidsdiretos"
+          "key": "despesasidscsv"
          }
         },
         "source": "object"
@@ -79021,14 +79540,14 @@
       "title": "Get record collection",
       "ref": {
        "type": "flow-function",
-       "id": "own_recheck.80c0e322.fee95"
+       "id": "own_100f5064.6f140"
       },
       "inputs": {
        "request": {
         "key": {
          "resourceName": {
           "source": "resource",
-          "key": "despesasidsdiretos"
+          "key": "despesasidscsv"
          }
         },
         "source": "object"
@@ -79054,7 +79573,7 @@
       "title": "Set data variable",
       "ref": {
        "type": "flow-function",
-       "id": "own_recheckSet.80c0e322.fee95"
+       "id": "own_105ec0bb.2f7d7"
       },
       "inputs": {
        "assignment": {
@@ -79085,7 +79604,7 @@
       "title": "If condition",
       "ref": {
        "type": "flow-function",
-       "id": "own_compare.80c0e322.fee95"
+       "id": "own_225eb957.12fbd"
       },
       "inputs": {
        "condition": {
@@ -79135,7 +79654,7 @@
       "title": "Alert",
       "ref": {
        "type": "flow-function",
-       "id": "own_staleData"
+       "id": "own_bd0c25ba.5aaf3"
       },
       "inputs": {
        "title": {
@@ -92556,7 +93075,7 @@
       "title": "Get record collection",
       "ref": {
        "type": "flow-function",
-       "id": "own_recheck.2474c70.1b28e"
+       "id": "own_100f5064.6f140"
       },
       "inputs": {
        "request": {
@@ -92589,7 +93108,7 @@
       "title": "Set data variable",
       "ref": {
        "type": "flow-function",
-       "id": "own_recheckSet.2474c70.1b28e"
+       "id": "own_105ec0bb.2f7d7"
       },
       "inputs": {
        "assignment": {
@@ -92620,7 +93139,7 @@
       "title": "If condition",
       "ref": {
        "type": "flow-function",
-       "id": "own_compare.2474c70.1b28e"
+       "id": "own_225eb957.12fbd"
       },
       "inputs": {
        "condition": {
@@ -92670,7 +93189,7 @@
       "title": "Alert",
       "ref": {
        "type": "flow-function",
-       "id": "own_staleData"
+       "id": "own_bd0c25ba.5aaf3"
       },
       "inputs": {
        "title": {
@@ -116861,7 +117380,7 @@
         "key": {
          "resourceName": {
           "source": "resource",
-          "key": "despesasidsdiretos"
+          "key": "despesasidscsv"
          }
         },
         "source": "object"
@@ -116982,14 +117501,14 @@
       "title": "Get record collection",
       "ref": {
        "type": "flow-function",
-       "id": "own_recheck.f990588c.3257d8"
+       "id": "own_100f5064.6f140"
       },
       "inputs": {
        "request": {
         "key": {
          "resourceName": {
           "source": "resource",
-          "key": "despesasidsdiretos"
+          "key": "despesasidscsv"
          }
         },
         "source": "object"
@@ -117015,7 +117534,7 @@
       "title": "Set data variable",
       "ref": {
        "type": "flow-function",
-       "id": "own_recheckSet.f990588c.3257d8"
+       "id": "own_105ec0bb.2f7d7"
       },
       "inputs": {
        "assignment": {
@@ -117046,7 +117565,7 @@
       "title": "If condition",
       "ref": {
        "type": "flow-function",
-       "id": "own_compare.f990588c.3257d8"
+       "id": "own_225eb957.12fbd"
       },
       "inputs": {
        "condition": {
@@ -117096,7 +117615,7 @@
       "title": "Alert",
       "ref": {
        "type": "flow-function",
-       "id": "own_staleData"
+       "id": "own_bd0c25ba.5aaf3"
       },
       "inputs": {
        "title": {
@@ -125380,6 +125899,78 @@
       "connections": {
        "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
         {
+         "type": "node",
+         "id": "mount.clearBtn"
+        }
+       ]
+      }
+     },
+     "mount.clearBtn": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "botaosubmeterdespesa"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "mount.clearPanel"
+        }
+       ]
+      }
+     },
+     "mount.clearPanel": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhomodo"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
          "type": "output",
          "id": "7373435c.faeaec-success-output"
         }
@@ -127119,7 +127710,7 @@
        "ceeba261-e546-4b5f-af45-47b75226fb2c": [
         {
          "type": "node",
-         "id": "atalho.v1"
+         "id": "atalho.today"
         }
        ],
        "871f4881-b57c-41d5-9934-a69367733066": [
@@ -127663,6 +128254,89 @@
       "connections": {
        "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
         {
+         "type": "node",
+         "id": "atalho.name"
+        }
+       ]
+      }
+     },
+     "atalho.today": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "NOW(\"YYYY-MM-DD\")",
+           "formula": "NOW(\"YYYY-MM-DD\")",
+           "functions": [
+            "NOW"
+           ],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "datadespesa"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.v1"
+        }
+       ]
+      }
+     },
+     "atalho.name": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"atalhonome\")),\"\",LOOKUP(params,\"atalhonome\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"atalhonome\")),\"\",LOOKUP(params,\"atalhonome\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "atalhonome"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhonome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
          "type": "output",
          "id": "atalho.apply-success-output"
         }
@@ -127706,8 +128380,8 @@
        "condition": {
         "source": "expression",
         "key": {
-         "script": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))&&!IS_EMPTY(LOOKUP(pageVars,\"valordespesa\"))",
-         "formula": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))&&!IS_EMPTY(LOOKUP(pageVars,\"valordespesa\"))",
+         "script": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))",
+         "formula": "!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))",
          "functions": [
           "IS_EMPTY",
           "LOOKUP"
@@ -127716,10 +128390,6 @@
           [
            "pageVars",
            "descricaodespesa"
-          ],
-          [
-           "pageVars",
-           "valordespesa"
           ]
          ]
         }
@@ -127776,15 +128446,21 @@
        },
        "body": {
         "key": {
-         "script": "[{nome:LOOKUP(pageVars,\"descricaodespesa\"),valor:NUMBER(REPLACE_ALL(STRING(LOOKUP(pageVars,\"valordespesa\")),\",\",\".\")),movimento:LOOKUP(pageVars,\"entradasaida\"),vivus_pessoal:LOOKUP(pageVars,\"vivuspessoal\"),categoria:LOOKUP(pageVars,\"categoriadespesa\"),despesas_fixas:LOOKUP(pageVars,\"despesafixa\"),descricao:LOOKUP(pageVars,\"descricaodespesa\"),conta:LOOKUP(pageVars,\"conta\"),classificacao:LOOKUP(pageVars,\"contacontabilidade\"),percentagem:LOOKUP(pageVars,\"percentagemarepor\"),reposicao_valor:LOOKUP(pageVars,\"valorarepor\"),cu:LOOKUP(pageVars,\"cu\")}]",
-         "formula": "[{nome:LOOKUP(pageVars,\"descricaodespesa\"),valor:NUMBER(REPLACE_ALL(STRING(LOOKUP(pageVars,\"valordespesa\")),\",\",\".\")),movimento:LOOKUP(pageVars,\"entradasaida\"),vivus_pessoal:LOOKUP(pageVars,\"vivuspessoal\"),categoria:LOOKUP(pageVars,\"categoriadespesa\"),despesas_fixas:LOOKUP(pageVars,\"despesafixa\"),descricao:LOOKUP(pageVars,\"descricaodespesa\"),conta:LOOKUP(pageVars,\"conta\"),classificacao:LOOKUP(pageVars,\"contacontabilidade\"),percentagem:LOOKUP(pageVars,\"percentagemarepor\"),reposicao_valor:LOOKUP(pageVars,\"valorarepor\"),cu:LOOKUP(pageVars,\"cu\")}]",
+         "script": "[{nome:IF(IS_EMPTY(LOOKUP(pageVars,\"atalhonome\")),LOOKUP(pageVars,\"descricaodespesa\"),LOOKUP(pageVars,\"atalhonome\")),valor:IF(IS_EMPTY(LOOKUP(pageVars,\"valordespesa\")),\"\",NUMBER(REPLACE_ALL(STRING(LOOKUP(pageVars,\"valordespesa\")),\",\",\".\"))),movimento:LOOKUP(pageVars,\"entradasaida\"),vivus_pessoal:LOOKUP(pageVars,\"vivuspessoal\"),categoria:LOOKUP(pageVars,\"categoriadespesa\"),despesas_fixas:LOOKUP(pageVars,\"despesafixa\"),descricao:LOOKUP(pageVars,\"descricaodespesa\"),conta:LOOKUP(pageVars,\"conta\"),classificacao:LOOKUP(pageVars,\"contacontabilidade\"),percentagem:LOOKUP(pageVars,\"percentagemarepor\"),reposicao_valor:LOOKUP(pageVars,\"valorarepor\"),cu:LOOKUP(pageVars,\"cu\")}]",
+         "formula": "[{nome:IF(IS_EMPTY(LOOKUP(pageVars,\"atalhonome\")),LOOKUP(pageVars,\"descricaodespesa\"),LOOKUP(pageVars,\"atalhonome\")),valor:IF(IS_EMPTY(LOOKUP(pageVars,\"valordespesa\")),\"\",NUMBER(REPLACE_ALL(STRING(LOOKUP(pageVars,\"valordespesa\")),\",\",\".\"))),movimento:LOOKUP(pageVars,\"entradasaida\"),vivus_pessoal:LOOKUP(pageVars,\"vivuspessoal\"),categoria:LOOKUP(pageVars,\"categoriadespesa\"),despesas_fixas:LOOKUP(pageVars,\"despesafixa\"),descricao:LOOKUP(pageVars,\"descricaodespesa\"),conta:LOOKUP(pageVars,\"conta\"),classificacao:LOOKUP(pageVars,\"contacontabilidade\"),percentagem:LOOKUP(pageVars,\"percentagemarepor\"),reposicao_valor:LOOKUP(pageVars,\"valorarepor\"),cu:LOOKUP(pageVars,\"cu\")}]",
          "functions": [
           "LOOKUP",
+          "IF",
+          "IS_EMPTY",
           "NUMBER",
           "REPLACE_ALL",
           "STRING"
          ],
          "dependencies": [
+          [
+           "pageVars",
+           "atalhonome"
+          ],
           [
            "pageVars",
            "descricaodespesa"
@@ -127830,14 +128506,15 @@
            "cu"
           ]
          ]
-        }
+        },
+        "source": "expression"
        }
       },
       "connections": {
        "180fc790-08a9-44c1-b7ab-265caf4f13e7": [
         {
          "type": "node",
-         "id": "atalho.alertOk"
+         "id": "atalho.closePanel"
         }
        ],
        "a4ec0b24-5bf1-40d3-97f0-91689c16c0be": [
@@ -127890,7 +128567,7 @@
         "source": "str"
        },
        "message": {
-        "key": "Preenche a descrição e o valor para guardar o atalho.",
+        "key": "Preenche a descrição para guardar o atalho. O valor é opcional.",
         "source": "str"
        },
        "dismissLabel": {
@@ -127922,6 +128599,204 @@
        }
       },
       "connections": {}
+     },
+     "atalho.modeCheck": {
+      "type": "function",
+      "title": "If condition",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_225eb957.12fbd"
+      },
+      "inputs": {
+       "condition": {
+        "source": "expression",
+        "key": {
+         "script": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"1\")",
+         "formula": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"1\")",
+         "functions": [
+          "IS_EQUAL",
+          "LOOKUP"
+         ],
+         "dependencies": [
+          [
+           "pageVars",
+           "atalhomodo"
+          ]
+         ]
+        }
+       }
+      },
+      "connections": {
+       "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+        {
+         "type": "node",
+         "id": "atalho.saveCheck"
+        }
+       ],
+       "871f4881-b57c-41d5-9934-a69367733066": [
+        {
+         "type": "node",
+         "id": "atalho.namemode"
+        }
+       ]
+      }
+     },
+     "atalho.namemode": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"1\"",
+           "formula": "\"1\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhomodo"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.suggest"
+        }
+       ]
+      }
+     },
+     "atalho.suggest": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(pageVars,\"atalhonome\")),LOOKUP(pageVars,\"descricaodespesa\"),LOOKUP(pageVars,\"atalhonome\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(pageVars,\"atalhonome\")),LOOKUP(pageVars,\"descricaodespesa\"),LOOKUP(pageVars,\"atalhonome\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "pageVars",
+             "atalhonome"
+            ],
+            [
+             "pageVars",
+             "descricaodespesa"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhonome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "output",
+         "id": "atalho.save-success-output"
+        }
+       ]
+      }
+     },
+     "atalho.closePanel": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhomodo"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.clearName"
+        }
+       ]
+      }
+     },
+     "atalho.clearName": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhonome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.alertOk"
+        }
+       ]
+      }
      }
     },
     "inputs": {
@@ -127947,11 +128822,109 @@
     },
     "startConnection": {
      "type": "node",
-     "id": "atalho.saveCheck"
+     "id": "atalho.modeCheck"
     },
     "variables": {},
     "pageId": "page.Page2",
     "contextId": "page:2:component:25c8f442-1a39-ef84-6a4f-3387f5af4916"
+   },
+   "atalho.cancel": {
+    "title": "Component tap (Component: ✕ Cancelar nome do atalho)",
+    "nodes": {
+     "atalho.cancelMode": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhomodo"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.cancelName"
+        }
+       ]
+      }
+     },
+     "atalho.cancelName": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhonome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "output",
+         "id": "atalho.cancel-success-output"
+        }
+       ]
+      }
+     }
+    },
+    "inputs": {
+     "type": "object",
+     "properties": {},
+     "required": []
+    },
+    "outputs": {
+     "atalho.cancel-success-output": {
+      "title": "Success",
+      "description": "Flow executed successfully",
+      "kind": "success",
+      "order": 0,
+      "values": {}
+     }
+    },
+    "startConnection": {
+     "type": "node",
+     "id": "atalho.cancelMode"
+    },
+    "variables": {},
+    "pageId": "page.Page2",
+    "contextId": "page:2:component:61277849-2114-4faf-a985-ea571040b29c"
    }
   }
  },
@@ -131683,6 +132656,371 @@
     "identifiers": [
      "id"
     ]
+   },
+   "identifiers": [
+    "id"
+   ]
+  },
+  "despesasidscsv": {
+   "id": "despesasidscsv",
+   "type": "restd",
+   "driverConfiguration": {
+    "base": {
+     "baseURL": {
+      "source": "expression",
+      "key": {
+       "script": "\"https://docs.google.com/spreadsheets/d/18zBgIUcwIjTc1fOzsmh46CrBnX_usNrCSAHtGEc9RJQ/export?format=csv&gid=1862163396&range=T:T\"+\"&_fresh=\"+STRING(NOW())",
+       "formula": "\"https://docs.google.com/spreadsheets/d/18zBgIUcwIjTc1fOzsmh46CrBnX_usNrCSAHtGEc9RJQ/export?format=csv&gid=1862163396&range=T:T\"+\"&_fresh=\"+STRING(NOW())",
+       "functions": [
+        "STRING",
+        "NOW"
+       ],
+       "dependencies": []
+      }
+     },
+     "driverVersion": "1.0.0"
+    },
+    "type": "restd",
+    "headers": {
+     "key": [],
+     "source": "array"
+    },
+    "operations": {
+     "list": {
+      "enabled": true,
+      "relativePath": {
+       "key": "",
+       "source": "str"
+      },
+      "requestMethod": "GET",
+      "responseMapper": {
+       "key": {
+        "script": "(()=>{const records=(function csv(text){const rows=[];let row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='\"'){if(quoted&&text[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(!quoted&&(c===','||c==='\\n'||c==='\\r')){row.push(cell);cell='';if(c!==','){if(c==='\\r'&&text[i+1]==='\\n')i++;rows.push(row);row=[];}}else cell+=c;}if(quoted)throw Error('Invalid CSV');if(cell||row.length){row.push(cell);rows.push(row);}const headers=rows.shift();if(!headers||headers[0]!=='id_despesa')throw Error('Invalid sheet');return rows.filter(x=>x.length===1&&x[0]!=='').map(x=>({id_despesa:x[0]}));})(LOOKUP(response,\"data\"));return {records,driverCode:LOOKUP(response,\"status\")};})()",
+        "formula": "(()=>{const records=(function csv(text){const rows=[];let row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='\"'){if(quoted&&text[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(!quoted&&(c===','||c==='\\n'||c==='\\r')){row.push(cell);cell='';if(c!==','){if(c==='\\r'&&text[i+1]==='\\n')i++;rows.push(row);row=[];}}else cell+=c;}if(quoted)throw Error('Invalid CSV');if(cell||row.length){row.push(cell);rows.push(row);}const headers=rows.shift();if(!headers||headers[0]!=='id_despesa')throw Error('Invalid sheet');return rows.filter(x=>x.length===1&&x[0]!=='').map(x=>({id_despesa:x[0]}));})(LOOKUP(response,\"data\"));return {records,driverCode:LOOKUP(response,\"status\")};})()",
+        "functions": [
+         "LOOKUP"
+        ],
+        "dependencies": [
+         [
+          "response",
+          "data"
+         ],
+         [
+          "response",
+          "status"
+         ]
+        ]
+       },
+       "source": "expression"
+      }
+     },
+     "create": {
+      "enabled": false,
+      "requestMethod": "POST",
+      "responseMapper": {
+       "key": {
+        "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+        "formula": "{record: response.data, driverCode: response.status}",
+        "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+        "functions": [
+         "LOOKUP"
+        ],
+        "dependencies": [
+         [
+          "response",
+          "data"
+         ],
+         [
+          "response",
+          "status"
+         ]
+        ]
+       },
+       "source": "expression"
+      }
+     },
+     "delete": {
+      "enabled": false,
+      "requestMethod": "DELETE",
+      "responseMapper": {
+       "key": {
+        "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+        "formula": "{record: response.data, driverCode: response.status}",
+        "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+        "functions": [
+         "LOOKUP"
+        ],
+        "dependencies": [
+         [
+          "response",
+          "data"
+         ],
+         [
+          "response",
+          "status"
+         ]
+        ]
+       },
+       "source": "expression"
+      }
+     },
+     "update": {
+      "enabled": false,
+      "requestMethod": "PATCH",
+      "responseMapper": {
+       "key": {
+        "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+        "formula": "{record: response.data, driverCode: response.status}",
+        "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+        "functions": [
+         "LOOKUP"
+        ],
+        "dependencies": [
+         [
+          "response",
+          "data"
+         ],
+         [
+          "response",
+          "status"
+         ]
+        ]
+       },
+       "source": "expression"
+      }
+     },
+     "replace": {
+      "enabled": false,
+      "requestMethod": "PUT",
+      "responseMapper": {
+       "key": {
+        "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+        "formula": "{record: response.data, driverCode: response.status}",
+        "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+        "functions": [
+         "LOOKUP"
+        ],
+        "dependencies": [
+         [
+          "response",
+          "data"
+         ],
+         [
+          "response",
+          "status"
+         ]
+        ]
+       },
+       "source": "expression"
+      }
+     },
+     "retrieve": {
+      "enabled": false,
+      "requestMethod": "GET",
+      "responseMapper": {
+       "key": {
+        "script": "{record:LOOKUP(response,\"data\"),driverCode:LOOKUP(response,\"status\")}",
+        "formula": "{record: response.data, driverCode: response.status}",
+        "inverse": "[\"o\",{record:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"data\"]),driverCode:LOOKUP.inv([\"r\",response,\"response\"],[\"c\",\"status\"])}]",
+        "functions": [
+         "LOOKUP"
+        ],
+        "dependencies": [
+         [
+          "response",
+          "data"
+         ],
+         [
+          "response",
+          "status"
+         ]
+        ]
+       },
+       "source": "expression"
+      }
+     }
+    }
+   },
+   "schema": {
+    "type": "object",
+    "properties": {
+     "cb": {
+      "type": "string",
+      "examples": [
+       ""
+      ]
+     },
+     "data": {
+      "type": "string",
+      "format": "date",
+      "examples": [
+       "2025-09-16"
+      ]
+     },
+     "pago": {
+      "type": "string",
+      "examples": [
+       ""
+      ]
+     },
+     "ativa": {
+      "type": "string",
+      "examples": [
+       "TRUE"
+      ]
+     },
+     "conta": {
+      "type": "string",
+      "examples": [
+       "Vivus",
+       "Ana"
+      ]
+     },
+     "valor": {
+      "type": "string",
+      "examples": [
+       "11.5",
+       "13.96",
+       "70",
+       "5.52",
+       "224.4"
+      ]
+     },
+     "imagem": {
+      "type": "string",
+      "format": "web-url",
+      "examples": [
+       "https://drive.google.com/open?id=1BcKAN1ja6U1EhayzhgN84eANxuSpe55S",
+       "https://drive.google.com/open?id=1wl2PUGNzGDQmoPqxrUmDAn4keKlrf30O"
+      ]
+     },
+     "categoria": {
+      "type": "string",
+      "examples": [
+       "Finanças",
+       "Desporto",
+       "Sessão Indv.",
+       "Outros",
+       "Salário"
+      ]
+     },
+     "descricao": {
+      "type": "string",
+      "examples": [
+       "retenção psicoterapia ",
+       "corrida Barcelos ",
+       "7346 | Inês Ferreira",
+       "comissão edenred ",
+       "CTR "
+      ]
+     },
+     "movimento": {
+      "type": "string",
+      "examples": [
+       "Saída",
+       "Entrada"
+      ]
+     },
+     "data_stein": {
+      "type": "string",
+      "format": "date",
+      "examples": [
+       "2025-09-16"
+      ]
+     },
+     "id_despesa": {
+      "type": "string",
+      "format": "integer",
+      "examples": [
+       "5520",
+       "5521",
+       "5522",
+       "5523",
+       "5524"
+      ]
+     },
+     "percentagem": {
+      "type": "string",
+      "examples": [
+       "0",
+       ""
+      ]
+     },
+     "classificacao": {
+      "type": "string",
+      "format": "integer",
+      "examples": [
+       "3",
+       "0",
+       "16",
+       "4"
+      ]
+     },
+     "iconcategoria": {
+      "type": "string",
+      "format": "web-url",
+      "examples": [
+       "https://cdn-icons-png.flaticon.com/128/1604/1604644.png",
+       "https://cdn-icons-png.flaticon.com/128/4893/4893592.png",
+       "FALSE",
+       "https://cdn-icons-png.flaticon.com/128/3388/3388759.png",
+       "https://cdn-icons-png.flaticon.com/128/12503/12503076.png"
+      ]
+     },
+     "valor_a_repor": {
+      "type": "string",
+      "examples": [
+       ""
+      ]
+     },
+     "vivus_pessoal": {
+      "type": "string",
+      "examples": [
+       "Vivusfisio",
+       "Pessoal"
+      ]
+     },
+     "despesas_fixas": {
+      "type": "string",
+      "examples": [
+       "Não",
+       "Sim"
+      ]
+     },
+     "fisioterapeuta": {
+      "type": "string",
+      "examples": [
+       "",
+       "Sonia Oliveira"
+      ]
+     },
+     "reposicao_valor": {
+      "type": "string",
+      "examples": [
+       "FALSE"
+      ]
+     },
+     "codigo_balancete": {
+      "type": "string",
+      "examples": [
+       ""
+      ]
+     },
+     "data_contabilidade": {
+      "type": "string",
+      "examples": [
+       "2025-09-16",
+       ""
+      ]
+     },
+     "data_contabilidade_stein": {
+      "type": "string",
+      "examples": [
+       "2025-09-16",
+       ""
+      ]
+     }
+    }
    },
    "identifiers": [
     "id"
