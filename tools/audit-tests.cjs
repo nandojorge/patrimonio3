@@ -249,6 +249,103 @@ test('A montagem/foco limpa o botão Submeter e o modo de nome',()=>{
  assert.equal(r.pageVars.botaosubmeterdespesa,'');
  assert.equal(r.pageVars.atalhomodo,'');
 });
+test('Abrir um atalho entra em modo editar e guarda o nome original',()=>{
+ assert('atalhoeditnome' in app.screens['page.Page2'].pageVariables);
+ const r=run('atalho.apply',{params:{usaratalho:'1',atalhonome:'Kampus'}});
+ assert.equal(r.pageVars.atalhoeditnome,'Kampus');
+ assert.equal(run('atalho.apply',{params:{usaratalho:'1'}}).pageVars.atalhoeditnome,'');
+});
+test('A montagem/foco assume modo editar ao abrir com atalho e limpa o resto',()=>{
+ assert.equal(run('7373435c.faeaec',{pageVars:{atalhomodo:'1'},params:{usaratalho:'1'}}).pageVars.atalhomodo,'2');
+ assert.equal(run('7373435c.faeaec',{pageVars:{atalhomodo:'2'}}).pageVars.atalhomodo,'');
+ assert.equal(run('7373435c.faeaec',{pageVars:{atalhomodo:''},params:{usaratalho:'1'}}).pageVars.atalhomodo,'2');
+});
+test('O painel do nome cobre os modos criar e editar',()=>{
+ const panel=app.components['64424eed-c034-f5bb-31df-bc58d107cd9c'];
+ const vis=panel.props.bindings.find(b=>b.targetProp==='visible');
+ assert.equal(app.expressions[vis.sourceId].script,'!IS_EQUAL(LOOKUP(pageVars,"atalhomodo"),"")');
+});
+test('★ em modo editar grava por PUT identificado pelo nome original',()=>{
+ const r=run('atalho.save',{pageVars:{...expenseVars,atalhomodo:'2',atalhoeditnome:'Kampus',atalhonome:'Kampus futebol'}});
+ assert.equal(r.requests.length,1);
+ const req=r.requests[0];
+ assert.equal(req.method,'PUT');
+ assert.equal(req.url,'https://api.steinhq.com/v1/storages/66fe6b324d11fd04f0335b3a/atalhos');
+ assert.equal(req.body.condition.nome,'Kampus');
+ assert.equal(req.body.set.nome,'Kampus futebol');
+ assert.equal(req.body.set.descricao,'Teste');
+ assert.equal(req.body.set.valor,12.5);
+ assert(r.alerts.some(a=>/atualizado/i.test(a)));
+ assert.equal(r.pageVars.atalhomodo,'');
+ assert.equal(r.pageVars.atalhoeditnome,'');
+ assert.equal(r.pageVars.atalhonome,'');
+});
+test('★ em modo editar sem nome original ou sem descrição não escreve nada',()=>{
+ for(const vars of [{atalhomodo:'2',atalhoeditnome:'',descricaodespesa:'X'},{atalhomodo:'2',atalhoeditnome:'Kampus',descricaodespesa:''}]){
+  const r=run('atalho.save',{pageVars:{...expenseVars,...vars}});
+  assert.equal(r.requests.length,0);
+  assert.equal(r.alerts.length,1);
+ }
+});
+test('★ em modo editar com falha de gravação mantém o painel e alerta',()=>{
+ const r=run('atalho.save',{pageVars:{...expenseVars,atalhomodo:'2',atalhoeditnome:'Kampus'},failAt:'atalho.put',failure:'bad'});
+ assert.equal(r.requests.length,1);
+ assert(r.alerts.some(a=>/verifica a ligação/i.test(a)),'mensagem de erro do PUT em falta');
+ assert(!r.navigated);
+ assert.equal(r.pageVars.atalhomodo,'2');
+ assert.equal(r.pageVars.atalhoeditnome,'Kampus');
+});
+test('Eliminar apaga pelo nome original, alerta e volta à lista',()=>{
+ const r=run('atalho.delete',{pageVars:{atalhomodo:'2',atalhoeditnome:'Kampus',atalhonome:'Kampus'}});
+ assert.equal(r.requests.length,1);
+ assert.equal(r.requests[0].method,'DELETE');
+ assert.equal(r.requests[0].url,'https://api.steinhq.com/v1/storages/66fe6b324d11fd04f0335b3a/atalhos');
+ assert.equal(r.requests[0].body.condition.nome,'Kampus');
+ assert.equal(Object.keys(r.requests[0].body).length,1);
+ assert(r.alerts.some(a=>/eliminado/i.test(a)));
+ assert(r.navigated);
+ assert.equal(r.pageVars.atalhomodo,'');
+ assert.equal(r.pageVars.atalhoeditnome,'');
+});
+test('Cancelar a eliminação não escreve nem navega',()=>{
+ const r=run('atalho.delete',{pageVars:{atalhoeditnome:'Kampus'},confirms:[false]});
+ assert.equal(r.requests.length,0);
+ assert(!r.navigated);
+});
+test('Falha ao eliminar alerta e mantém o painel aberto',()=>{
+ const r=run('atalho.delete',{pageVars:{atalhomodo:'2',atalhoeditnome:'Kampus'},failAt:'atalho.del',failure:'err'});
+ assert(r.alerts.some(a=>/verifica a ligação/i.test(a)),'mensagem de erro da eliminação em falta');
+ assert(!r.navigated);
+ assert.equal(r.pageVars.atalhomodo,'2');
+});
+test('O botão Eliminar está no painel, aparece só no modo editar e dispara a eliminação',()=>{
+ const elim=Object.values(app.components).find(c=>c.props.content==='Eliminar');
+ assert(elim,'botão Eliminar em falta');
+ const panel=app.components['64424eed-c034-f5bb-31df-bc58d107cd9c'];
+ const panelNode=app.screens['page.Page2'].components[0].ch.find(n=>n.id===panel.id);
+ assert(panelNode.ch.some(n=>n.id===elim.id),'Eliminar fora do painel');
+ const vis=elim.props.bindings.find(b=>b.targetProp==='visible');
+ assert.equal(app.expressions[vis.sourceId].script,'IS_EQUAL(LOOKUP(pageVars,"atalhomodo"),"2")');
+ assert.equal(elim.props.events.tap[0].id,'atalho.deleteTap');
+ assert.deepEqual(app.logic.events['atalho.deleteTap'].triggeredFlows,['atalho.delete']);
+});
+test('O painel do nome é uma linha com campo a crescer e ✕ com bom alvo de toque',()=>{
+ const panel=app.components['64424eed-c034-f5bb-31df-bc58d107cd9c'];
+ const h=panel.props.styles.holder;
+ assert.equal(h.flexDirection,'row');
+ assert.equal(h.alignItems,'center');
+ assert(h.paddingLeft>=12&&h.paddingRight>=6,'painel sem padding horizontal');
+ const comp=app.components['6f1a08b8-cee4-a85b-eaf6-87fc027c2164'].props.styles.holder;
+ assert(comp.flexGrow>=1,'campo de nome não ocupa o espaço disponível');
+ assert.equal(comp.marginLeft,0);
+ const cancel=app.components['61277849-2114-4faf-a985-ea571040b29c'].props.styles.view;
+ assert(cancel.paddingLeft+cancel.paddingRight>=20&&cancel.paddingTop+cancel.paddingBottom>=12,'✕ sem alvo de toque confortável');
+});
+test('Cancelar (✕) limpa também o nome original do atalho',()=>{
+ const r=run('atalho.cancel',{pageVars:{atalhomodo:'2',atalhonome:'Kampus',atalhoeditnome:'Kampus'}});
+ assert.equal(r.pageVars.atalhoeditnome,'');
+ assert.equal(r.pageVars.atalhomodo,'');
+});
 test('Leitura de ids usa export CSV da coluna T com cache-buster',()=>{
  const csv=app.dataResources.despesasidscsv;
  assert(csv,'recurso despesasidscsv em falta');
@@ -277,8 +374,8 @@ test('O mapper do CSV de ids valida o cabeçalho e devolve os identificadores',(
  assert.equal(recs.driverCode,200);
  assert.throws(()=>evaluate(script,{response:{data:'outra_coluna\r\n1\r\n',status:200}}));
 });
-test('Versão publicada 3.0.11 para cache-bust dos bundles',()=>{
- assert.equal(JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version,'3.0.11');
+test('Versão publicada 3.0.12 para cache-bust dos bundles',()=>{
+ assert.equal(JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).version,'3.0.12');
 });
 test('Nenhum nó de fluxo usa ref forjada (o runtime ignora-as em silêncio)',()=>{
  const canon={};

@@ -448,7 +448,8 @@
     "contadestino": "",
     "iddespesa": 0,
     "atalhonome": "",
-    "atalhomodo": ""
+    "atalhomodo": "",
+    "atalhoeditnome": ""
    },
    "dataReferences": {
     "listasStein1": [],
@@ -545,6 +546,10 @@
            "id": "141a7eae-f7e1-7e12-7ed0-193dac255fb2"
           }
          ]
+        },
+        {
+         "id": "09d0887a-5f29-00e3-c269-0de6d9e12901",
+         "ch": []
         },
         {
          "id": "61277849-2114-4faf-a985-ea571040b29c"
@@ -62473,29 +62478,32 @@
     "styles": {
      "holder": {
       "flexWrap": "nowrap",
-      "alignItems": "flex-start",
+      "alignItems": "center",
       "backfaceVisibility": "visible",
       "opacity": 1,
       "overflow": "hidden",
       "position": "relative",
       "alignSelf": "center",
       "alignContent": "flex-start",
-      "flexDirection": "column",
-      "justifyContent": "center",
-      "minHeight": 80,
-      "borderRadius": 4,
+      "flexDirection": "row",
+      "justifyContent": "flex-start",
+      "borderRadius": 8,
       "backgroundColor": "#ffffff",
-      "borderTopLeftRadius": 30,
-      "borderTopRightRadius": 30,
-      "borderBottomLeftRadius": 30,
-      "borderBottomRightRadius": 30,
+      "borderTopLeftRadius": 8,
+      "borderTopRightRadius": 8,
+      "borderBottomLeftRadius": 8,
+      "borderBottomRightRadius": 8,
       "marginTop": 0,
       "marginBottom": 12,
       "borderWidth": 0,
       "borderRightWidth": 0,
       "borderLeftWidth": 0,
       "borderTopWidth": 0,
-      "borderBottomWidth": 0
+      "borderBottomWidth": 0,
+      "paddingTop": 8,
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 8
      },
      "backgroundImage": {
       "resizeMode": "cover",
@@ -62571,8 +62579,8 @@
       "alignContent": "flex-start",
       "flexDirection": "column",
       "justifyContent": "center",
-      "marginLeft": 18,
-      "marginRight": 16,
+      "marginLeft": 0,
+      "marginRight": 0,
       "paddingTop": 0,
       "borderColor": "#89919a",
       "borderWidth": 0,
@@ -62596,8 +62604,8 @@
       "borderTopRightRadius": 2,
       "borderBottomLeftRadius": 2,
       "borderBottomRightRadius": 2,
-      "flexGrow": 0,
-      "flexShrink": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
       "flexBasis": "auto",
       "marginTop": 0,
       "marginBottom": 0
@@ -62894,7 +62902,9 @@
       "borderTopWidth": 0,
       "borderBottomWidth": 0,
       "paddingRight": 12,
-      "paddingLeft": 12
+      "paddingLeft": 12,
+      "paddingTop": 8,
+      "paddingBottom": 8
      }
     },
     "dynamicProps": [],
@@ -62912,6 +62922,89 @@
      ]
     },
     "bindings": []
+   },
+   "pluginComponentId": "appgyver.primitives:primitive:text",
+   "reactClass": "Text",
+   "pageId": "page.Page2"
+  },
+  "09d0887a-5f29-00e3-c269-0de6d9e12901": {
+   "id": "09d0887a-5f29-00e3-c269-0de6d9e12901",
+   "props": {
+    "contextPropTypes": [
+     "visible",
+     "data",
+     "styles",
+     "animationsConfig",
+     "content"
+    ],
+    "content": "Eliminar",
+    "visible": true,
+    "flowGroupId": "page:2:component:09d0887a-5f29-00e3-c269-0de6d9e12901",
+    "styles": {
+     "text": {
+      "color": "#d64545",
+      "fontSize": 14,
+      "fontFamily": "Archivo Narrow",
+      "fontWeight": "700",
+      "lineHeight": 20,
+      "textDecorationColor": "#32363a",
+      "textDecorationStyle": "solid",
+      "fontStyle": "normal",
+      "textAlign": "center",
+      "letterSpacing": 0,
+      "textTransform": "none",
+      "textDecorationLine": "none",
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0
+     },
+     "view": {
+      "overflow": "visible",
+      "backfaceVisibility": "visible",
+      "opacity": 1,
+      "position": "relative",
+      "alignSelf": "center",
+      "flexGrow": 0,
+      "flexShrink": 0,
+      "flexBasis": "auto",
+      "marginTop": 0,
+      "marginBottom": 0,
+      "borderWidth": 0,
+      "borderRightWidth": 0,
+      "borderLeftWidth": 0,
+      "borderTopWidth": 0,
+      "borderBottomWidth": 0,
+      "paddingRight": 8,
+      "paddingLeft": 12,
+      "paddingTop": 8,
+      "paddingBottom": 8
+     }
+    },
+    "dynamicProps": [],
+    "expressionProps": [
+     "visible"
+    ],
+    "events": {
+     "tap": [
+      {
+       "id": "atalho.deleteTap"
+      }
+     ],
+     "onPress": [
+      {
+       "id": "atalho.deleteTap"
+      }
+     ]
+    },
+    "bindings": [
+     {
+      "type": "expression",
+      "sourceId": "1b7e0fbc-e1d5-1c11-1a65-5b5362a83e7c",
+      "targetProp": "visible"
+     }
+    ]
    },
    "pluginComponentId": "appgyver.primitives:primitive:text",
    "reactClass": "Text",
@@ -65170,8 +65263,24 @@
   "0ecdc962-5de5-2fd0-823a-c1cc2ac71afb": {
    "id": "0ecdc962-5de5-2fd0-823a-c1cc2ac71afb",
    "type": "expression",
-   "formula": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"1\")",
-   "script": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"1\")",
+   "formula": "!IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"\")",
+   "script": "!IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"\")",
+   "dependencies": [
+    [
+     "pageVars",
+     "atalhomodo"
+    ]
+   ],
+   "functions": [
+    "IS_EQUAL",
+    "LOOKUP"
+   ]
+  },
+  "1b7e0fbc-e1d5-1c11-1a65-5b5362a83e7c": {
+   "id": "1b7e0fbc-e1d5-1c11-1a65-5b5362a83e7c",
+   "type": "expression",
+   "formula": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"2\")",
+   "script": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"2\")",
    "dependencies": [
     [
      "pageVars",
@@ -74512,6 +74621,17 @@
     "fallbackName": "Tap",
     "pageId": "page.Page2",
     "contextId": "page:2:component:61277849-2114-4faf-a985-ea571040b29c"
+   },
+   "atalho.deleteTap": {
+    "id": "atalho.deleteTap",
+    "name": "",
+    "eventSource": "page:2:component:09d0887a-5f29-00e3-c269-0de6d9e12901:tap",
+    "triggeredFlows": [
+     "atalho.delete"
+    ],
+    "fallbackName": "Tap",
+    "pageId": "page.Page2",
+    "contextId": "page:2:component:09d0887a-5f29-00e3-c269-0de6d9e12901"
    }
   },
   "flows": {
@@ -125954,10 +126074,19 @@
          "value": {
           "source": "expression",
           "key": {
-           "script": "\"\"",
-           "formula": "\"\"",
-           "functions": [],
-           "dependencies": []
+           "script": "IF(IS_EQUAL(LOOKUP(params,\"usaratalho\"),\"1\"),\"2\",\"\")",
+           "formula": "IF(IS_EQUAL(LOOKUP(params,\"usaratalho\"),\"1\"),\"2\",\"\")",
+           "functions": [
+            "IF",
+            "IS_EQUAL",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "usaratalho"
+            ]
+           ]
           }
          },
          "reference": {
@@ -128337,6 +128466,51 @@
       "connections": {
        "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
         {
+         "type": "node",
+         "id": "atalho.editnome"
+        }
+       ]
+      }
+     },
+     "atalho.editnome": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "IF(IS_EMPTY(LOOKUP(params,\"atalhonome\")),\"\",LOOKUP(params,\"atalhonome\"))",
+           "formula": "IF(IS_EMPTY(LOOKUP(params,\"atalhonome\")),\"\",LOOKUP(params,\"atalhonome\"))",
+           "functions": [
+            "IF",
+            "IS_EMPTY",
+            "LOOKUP"
+           ],
+           "dependencies": [
+            [
+             "params",
+             "atalhonome"
+            ]
+           ]
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhoeditnome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
          "type": "output",
          "id": "atalho.apply-success-output"
         }
@@ -128636,7 +128810,7 @@
        "871f4881-b57c-41d5-9934-a69367733066": [
         {
          "type": "node",
-         "id": "atalho.namemode"
+         "id": "atalho.editModeCheck"
         }
        ]
       }
@@ -128797,6 +128971,394 @@
         }
        ]
       }
+     },
+     "atalho.editModeCheck": {
+      "type": "function",
+      "title": "If condition",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_225eb957.12fbd"
+      },
+      "inputs": {
+       "condition": {
+        "source": "expression",
+        "key": {
+         "script": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"2\")",
+         "formula": "IS_EQUAL(LOOKUP(pageVars,\"atalhomodo\"),\"2\")",
+         "functions": [
+          "IS_EQUAL",
+          "LOOKUP"
+         ],
+         "dependencies": [
+          [
+           "pageVars",
+           "atalhomodo"
+          ]
+         ]
+        }
+       }
+      },
+      "connections": {
+       "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+        {
+         "type": "node",
+         "id": "atalho.editCheck"
+        }
+       ],
+       "871f4881-b57c-41d5-9934-a69367733066": [
+        {
+         "type": "node",
+         "id": "atalho.namemode"
+        }
+       ]
+      }
+     },
+     "atalho.editCheck": {
+      "type": "function",
+      "title": "If condition",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_225eb957.12fbd"
+      },
+      "inputs": {
+       "condition": {
+        "source": "expression",
+        "key": {
+         "script": "!IS_EMPTY(LOOKUP(pageVars,\"atalhoeditnome\"))&&!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))",
+         "formula": "!IS_EMPTY(LOOKUP(pageVars,\"atalhoeditnome\"))&&!IS_EMPTY(LOOKUP(pageVars,\"descricaodespesa\"))",
+         "functions": [
+          "IS_EMPTY",
+          "LOOKUP"
+         ],
+         "dependencies": [
+          [
+           "pageVars",
+           "atalhoeditnome"
+          ],
+          [
+           "pageVars",
+           "descricaodespesa"
+          ]
+         ]
+        }
+       }
+      },
+      "connections": {
+       "ceeba261-e546-4b5f-af45-47b75226fb2c": [
+        {
+         "type": "node",
+         "id": "atalho.put"
+        }
+       ],
+       "871f4881-b57c-41d5-9934-a69367733066": [
+        {
+         "type": "node",
+         "id": "atalho.alertEditMissing"
+        }
+       ]
+      }
+     },
+     "atalho.put": {
+      "type": "function",
+      "title": "HTTP request",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_1a22567d.4d69a"
+      },
+      "inputs": {
+       "url": {
+        "key": "https://api.steinhq.com/v1/storages/66fe6b324d11fd04f0335b3a/atalhos",
+        "source": "str"
+       },
+       "method": {
+        "key": "PUT",
+        "source": "str"
+       },
+       "headers": {
+        "key": [
+         {
+          "value": "application/json",
+          "header": "Content-Type"
+         }
+        ],
+        "source": [
+         {
+          "value": "str",
+          "header": "str"
+         }
+        ]
+       },
+       "bodyType": {
+        "key": "json",
+        "source": "str"
+       },
+       "body": {
+        "source": "expression",
+        "key": {
+         "script": "{condition:{nome:LOOKUP(pageVars,\"atalhoeditnome\")},set:{nome:IF(IS_EMPTY(LOOKUP(pageVars,\"atalhonome\")),LOOKUP(pageVars,\"descricaodespesa\"),LOOKUP(pageVars,\"atalhonome\")),valor:IF(IS_EMPTY(LOOKUP(pageVars,\"valordespesa\")),\"\",NUMBER(REPLACE_ALL(STRING(LOOKUP(pageVars,\"valordespesa\")),\",\",\".\"))),movimento:LOOKUP(pageVars,\"entradasaida\"),vivus_pessoal:LOOKUP(pageVars,\"vivuspessoal\"),categoria:LOOKUP(pageVars,\"categoriadespesa\"),despesas_fixas:LOOKUP(pageVars,\"despesafixa\"),descricao:LOOKUP(pageVars,\"descricaodespesa\"),conta:LOOKUP(pageVars,\"conta\"),classificacao:LOOKUP(pageVars,\"contacontabilidade\"),percentagem:LOOKUP(pageVars,\"percentagemarepor\"),reposicao_valor:LOOKUP(pageVars,\"valorarepor\"),cu:LOOKUP(pageVars,\"cu\")}}",
+         "formula": "{condition:{nome:LOOKUP(pageVars,\"atalhoeditnome\")},set:{nome:IF(IS_EMPTY(LOOKUP(pageVars,\"atalhonome\")),LOOKUP(pageVars,\"descricaodespesa\"),LOOKUP(pageVars,\"atalhonome\")),valor:IF(IS_EMPTY(LOOKUP(pageVars,\"valordespesa\")),\"\",NUMBER(REPLACE_ALL(STRING(LOOKUP(pageVars,\"valordespesa\")),\",\",\".\"))),movimento:LOOKUP(pageVars,\"entradasaida\"),vivus_pessoal:LOOKUP(pageVars,\"vivuspessoal\"),categoria:LOOKUP(pageVars,\"categoriadespesa\"),despesas_fixas:LOOKUP(pageVars,\"despesafixa\"),descricao:LOOKUP(pageVars,\"descricaodespesa\"),conta:LOOKUP(pageVars,\"conta\"),classificacao:LOOKUP(pageVars,\"contacontabilidade\"),percentagem:LOOKUP(pageVars,\"percentagemarepor\"),reposicao_valor:LOOKUP(pageVars,\"valorarepor\"),cu:LOOKUP(pageVars,\"cu\")}}",
+         "functions": [
+          "LOOKUP",
+          "IF",
+          "IS_EMPTY",
+          "NUMBER",
+          "REPLACE_ALL",
+          "STRING"
+         ],
+         "dependencies": [
+          [
+           "pageVars",
+           "atalhoeditnome"
+          ],
+          [
+           "pageVars",
+           "atalhonome"
+          ],
+          [
+           "pageVars",
+           "descricaodespesa"
+          ],
+          [
+           "pageVars",
+           "valordespesa"
+          ],
+          [
+           "pageVars",
+           "entradasaida"
+          ],
+          [
+           "pageVars",
+           "vivuspessoal"
+          ],
+          [
+           "pageVars",
+           "categoriadespesa"
+          ],
+          [
+           "pageVars",
+           "despesafixa"
+          ],
+          [
+           "pageVars",
+           "conta"
+          ],
+          [
+           "pageVars",
+           "contacontabilidade"
+          ],
+          [
+           "pageVars",
+           "percentagemarepor"
+          ],
+          [
+           "pageVars",
+           "valorarepor"
+          ],
+          [
+           "pageVars",
+           "cu"
+          ]
+         ]
+        }
+       }
+      },
+      "connections": {
+       "180fc790-08a9-44c1-b7ab-265caf4f13e7": [
+        {
+         "type": "node",
+         "id": "atalho.editClose"
+        }
+       ],
+       "a4ec0b24-5bf1-40d3-97f0-91689c16c0be": [
+        {
+         "type": "node",
+         "id": "atalho.alertUpdateErr"
+        }
+       ],
+       "d0ffa631-53c6-4352-8b33-0db7034ae11f": [
+        {
+         "type": "node",
+         "id": "atalho.alertUpdateErr"
+        }
+       ]
+      }
+     },
+     "atalho.editClose": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhomodo"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.editClearName"
+        }
+       ]
+      }
+     },
+     "atalho.editClearName": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhonome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.editClearEdit"
+        }
+       ]
+      }
+     },
+     "atalho.editClearEdit": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhoeditnome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.alertUpdated"
+        }
+       ]
+      }
+     },
+     "atalho.alertUpdated": {
+      "type": "function",
+      "title": "Alert",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_bd0c25ba.5aaf3"
+      },
+      "inputs": {
+       "title": {
+        "key": "Atalho atualizado",
+        "source": "str"
+       },
+       "message": {
+        "key": "O atalho foi atualizado e já aparece na página Atalhos.",
+        "source": "str"
+       },
+       "dismissLabel": {
+        "key": "OK",
+        "source": "str"
+       }
+      },
+      "connections": {}
+     },
+     "atalho.alertUpdateErr": {
+      "type": "function",
+      "title": "Alert",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_bd0c25ba.5aaf3"
+      },
+      "inputs": {
+       "title": {
+        "key": "Não foi possível guardar",
+        "source": "str"
+       },
+       "message": {
+        "key": "Verifica a ligação com a folha e tenta novamente.",
+        "source": "str"
+       },
+       "dismissLabel": {
+        "key": "OK",
+        "source": "str"
+       }
+      },
+      "connections": {}
+     },
+     "atalho.alertEditMissing": {
+      "type": "function",
+      "title": "Alert",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_bd0c25ba.5aaf3"
+      },
+      "inputs": {
+       "title": {
+        "key": "Faltam dados",
+        "source": "str"
+       },
+       "message": {
+        "key": "Para editar um atalho tem de estar preenchido o nome original e a descrição.",
+        "source": "str"
+       },
+       "dismissLabel": {
+        "key": "OK",
+        "source": "str"
+       }
+      },
+      "connections": {}
      }
     },
     "inputs": {
@@ -128897,6 +129459,42 @@
       "connections": {
        "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
         {
+         "type": "node",
+         "id": "atalho.cancelEdit"
+        }
+       ]
+      }
+     },
+     "atalho.cancelEdit": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhoeditnome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
          "type": "output",
          "id": "atalho.cancel-success-output"
         }
@@ -128925,6 +129523,340 @@
     "variables": {},
     "pageId": "page.Page2",
     "contextId": "page:2:component:61277849-2114-4faf-a985-ea571040b29c"
+   },
+   "atalho.delete": {
+    "title": "Component tap (Component: Eliminar atalho)",
+    "nodes": {
+     "atalho.delConfirm": {
+      "type": "function",
+      "title": "Confirm",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_1adc86bb.3d695"
+      },
+      "inputs": {
+       "title": {
+        "key": "Eliminar atalho",
+        "source": "str"
+       },
+       "message": {
+        "source": "expression",
+        "key": {
+         "script": "LOOKUP(pageVars,\"atalhoeditnome\")+\" será eliminado da folha. Esta ação não pode ser desfeita.\"",
+         "formula": "LOOKUP(pageVars,\"atalhoeditnome\")+\" será eliminado da folha. Esta ação não pode ser desfeita.\"",
+         "functions": [
+          "ADD",
+          "LOOKUP"
+         ],
+         "dependencies": [
+          [
+           "pageVars",
+           "atalhoeditnome"
+          ]
+         ]
+        }
+       },
+       "cancelLabel": {
+        "key": "Não",
+        "source": "str"
+       },
+       "confirmLabel": {
+        "key": "Sim",
+        "source": "str"
+       }
+      },
+      "connections": {
+       "d439758f-3d3e-4b03-adcf-bb093c3ff1fc": [
+        {
+         "type": "node",
+         "id": "atalho.del"
+        }
+       ],
+       "08c2f10b-bcff-4c63-a29d-cbfe6fa69a9c": [
+        {
+         "type": "output",
+         "id": "atalho.delete-success-output"
+        }
+       ]
+      }
+     },
+     "atalho.del": {
+      "type": "function",
+      "title": "HTTP request",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_1a22567d.4d69a"
+      },
+      "inputs": {
+       "url": {
+        "key": "https://api.steinhq.com/v1/storages/66fe6b324d11fd04f0335b3a/atalhos",
+        "source": "str"
+       },
+       "method": {
+        "key": "DELETE",
+        "source": "str"
+       },
+       "headers": {
+        "key": [
+         {
+          "value": "application/json",
+          "header": "Content-Type"
+         }
+        ],
+        "source": [
+         {
+          "value": "str",
+          "header": "str"
+         }
+        ]
+       },
+       "bodyType": {
+        "key": "json",
+        "source": "str"
+       },
+       "body": {
+        "source": "expression",
+        "key": {
+         "script": "{condition:{nome:LOOKUP(pageVars,\"atalhoeditnome\")}}",
+         "formula": "{condition:{nome:LOOKUP(pageVars,\"atalhoeditnome\")}}",
+         "functions": [
+          "LOOKUP"
+         ],
+         "dependencies": [
+          [
+           "pageVars",
+           "atalhoeditnome"
+          ]
+         ]
+        }
+       }
+      },
+      "connections": {
+       "180fc790-08a9-44c1-b7ab-265caf4f13e7": [
+        {
+         "type": "node",
+         "id": "atalho.delClose"
+        }
+       ],
+       "a4ec0b24-5bf1-40d3-97f0-91689c16c0be": [
+        {
+         "type": "node",
+         "id": "atalho.alertDeleteErr"
+        }
+       ],
+       "d0ffa631-53c6-4352-8b33-0db7034ae11f": [
+        {
+         "type": "node",
+         "id": "atalho.alertDeleteErr"
+        }
+       ]
+      }
+     },
+     "atalho.delClose": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhomodo"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.delClearName"
+        }
+       ]
+      }
+     },
+     "atalho.delClearName": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhonome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.delClearEdit"
+        }
+       ]
+      }
+     },
+     "atalho.delClearEdit": {
+      "type": "function",
+      "title": "Set page variable",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_23268044.e1e2b"
+      },
+      "inputs": {
+       "variable": {
+        "key": {
+         "value": {
+          "source": "expression",
+          "key": {
+           "script": "\"\"",
+           "formula": "\"\"",
+           "functions": [],
+           "dependencies": []
+          }
+         },
+         "reference": {
+          "source": "page-variable-ref",
+          "key": "atalhoeditnome"
+         }
+        },
+        "source": "object"
+       }
+      },
+      "connections": {
+       "aab5c5a6-049b-4e2b-8068-aac6d1c8cab3": [
+        {
+         "type": "node",
+         "id": "atalho.alertDeleted"
+        }
+       ]
+      }
+     },
+     "atalho.alertDeleted": {
+      "type": "function",
+      "title": "Alert",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_bd0c25ba.5aaf3"
+      },
+      "inputs": {
+       "title": {
+        "key": "Atalho eliminado",
+        "source": "str"
+       },
+       "message": {
+        "key": "O atalho foi eliminado da lista de atalhos.",
+        "source": "str"
+       },
+       "dismissLabel": {
+        "key": "OK",
+        "source": "str"
+       }
+      },
+      "connections": {
+       "4b40389a-e389-4658-8a3b-4fe47959ade7": [
+        {
+         "type": "node",
+         "id": "atalho.delBack"
+        }
+       ]
+      }
+     },
+     "atalho.delBack": {
+      "type": "function",
+      "title": "Navigate back",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_20bb6b4f.8c11d"
+      },
+      "inputs": {
+       "numberOfPages": {
+        "key": 1,
+        "source": "num"
+       }
+      },
+      "connections": {}
+     },
+     "atalho.alertDeleteErr": {
+      "type": "function",
+      "title": "Alert",
+      "ref": {
+       "type": "flow-function",
+       "id": "own_bd0c25ba.5aaf3"
+      },
+      "inputs": {
+       "title": {
+        "key": "Não foi possível eliminar",
+        "source": "str"
+       },
+       "message": {
+        "key": "Verifica a ligação com a folha e tenta novamente.",
+        "source": "str"
+       },
+       "dismissLabel": {
+        "key": "OK",
+        "source": "str"
+       }
+      },
+      "connections": {}
+     }
+    },
+    "inputs": {
+     "type": "object",
+     "properties": {},
+     "required": []
+    },
+    "outputs": {
+     "atalho.delete-success-output": {
+      "title": "Success",
+      "description": "Flow executed successfully",
+      "kind": "success",
+      "order": 0,
+      "values": {}
+     },
+     "atalho.delete-error-output": {
+      "title": "Error",
+      "description": "Flow executed with an error",
+      "kind": "error",
+      "order": 1,
+      "values": {}
+     }
+    },
+    "startConnection": {
+     "type": "node",
+     "id": "atalho.delConfirm"
+    },
+    "variables": {},
+    "pageId": "page.Page2",
+    "contextId": "page:2:component:09d0887a-5f29-00e3-c269-0de6d9e12901"
    }
   }
  },
